@@ -1,0 +1,1192 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Code for The Algorithms </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13f07e06-2ba1-808a-b718-ddb649757df5" class="page sans"><header><h1 class="page-title">Code for The Algorithms </h1><p class="page-description"></p></header><div class="page-body"><p id="13f07e06-2ba1-802d-9915-f143e3e0703c" class="">Here’s the C++ code for the requested algorithms. These implementations are concise and efficient:</p><hr id="13f07e06-2ba1-806f-ac87-e0334e676ddb"/><h3 id="13f07e06-2ba1-801d-bdad-f02beb23ce23" class=""><strong>1. Kadane’s Algorithm (Maximum Subarray Sum)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-801e-a68d-c33a9ca4f172" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int maxSubarraySum(vector&lt;int&gt;&amp; arr) {
+    int maxSoFar = arr[0], currentMax = arr[0];
+    for (int i = 1; i &lt; arr.size(); i++) {
+        currentMax = max(arr[i], currentMax + arr[i]);
+        maxSoFar = max(maxSoFar, currentMax);
+    }
+    return maxSoFar;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    cout &lt;&lt; maxSubarraySum(arr) &lt;&lt; endl;  // Output: 6
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80cd-963b-c3c903957476"/><h3 id="13f07e06-2ba1-808f-a190-e6d4ae53511e" class=""><strong>2. Two-pointer Technique</strong></h3><p id="13f07e06-2ba1-80eb-a16a-cf22d6543bb5" class="">Find a pair with a given sum:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8067-9ef8-f1d3c60ee12d" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+pair&lt;int, int&gt; twoSum(vector&lt;int&gt;&amp; arr, int target) {
+    sort(arr.begin(), arr.end());
+    int left = 0, right = arr.size() - 1;
+
+    while (left &lt; right) {
+        int sum = arr[left] + arr[right];
+        if (sum == target) return {arr[left], arr[right]};
+        else if (sum &lt; target) left++;
+        else right--;
+    }
+    return {-1, -1};  // Pair not found
+}
+
+int main() {
+    vector&lt;int&gt; arr = {10, 20, 35, 50, 75, 80};
+    int target = 70;
+    auto result = twoSum(arr, target);
+    if (result.first != -1)
+        cout &lt;&lt; result.first &lt;&lt; &quot;, &quot; &lt;&lt; result.second &lt;&lt; endl;  // Output: 20, 50
+    else
+        cout &lt;&lt; &quot;No pair found&quot; &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-803b-abff-d8549e139d80"/><h3 id="13f07e06-2ba1-800a-b9dd-ea8358794007" class=""><strong>3. Sliding Window Algorithm</strong></h3><p id="13f07e06-2ba1-804d-8372-e69024658b84" class="">Maximum sum of subarray of size \(k\):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80cc-8110-cd1fd4d6f218" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int maxSumSubarray(vector&lt;int&gt;&amp; arr, int k) {
+    int n = arr.size();
+    if (n &lt; k) return -1;
+
+    int windowSum = 0, maxSum = 0;
+    for (int i = 0; i &lt; k; i++) {
+        windowSum += arr[i];
+    }
+    maxSum = windowSum;
+
+    for (int i = k; i &lt; n; i++) {
+        windowSum += arr[i] - arr[i - k];
+        maxSum = max(maxSum, windowSum);
+    }
+
+    return maxSum;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, 2, 3, 4, 5, 6, 7, 8};
+    int k = 3;
+    cout &lt;&lt; maxSumSubarray(arr, k) &lt;&lt; endl;  // Output: 21
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e6-bbfe-d4d9aa1fd7fe"/><h3 id="13f07e06-2ba1-80d7-889c-e98fce22f784" class=""><strong>4. Dutch National Flag Algorithm</strong></h3><p id="13f07e06-2ba1-8029-a19c-eaae338bee17" class="">Sort an array of 0s, 1s, and 2s:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8089-932b-ca7d4dafe479" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+void sortColors(vector&lt;int&gt;&amp; arr) {
+    int low = 0, mid = 0, high = arr.size() - 1;
+
+    while (mid &lt;= high) {
+        if (arr[mid] == 0) swap(arr[low++], arr[mid++]);
+        else if (arr[mid] == 1) mid++;
+        else swap(arr[mid], arr[high--]);
+    }
+}
+
+int main() {
+    vector&lt;int&gt; arr = {2, 0, 2, 1, 1, 0};
+    sortColors(arr);
+    for (int num : arr) cout &lt;&lt; num &lt;&lt; &quot; &quot;;  // Output: 0 0 1 1 2 2
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8082-9900-e800921d3008"/><h3 id="13f07e06-2ba1-8059-8f68-eb8834d6005d" class=""><strong>5. Binary Search (First and Last Occurrence)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80d6-a145-cb3d2a40013e" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int binarySearchFirst(vector&lt;int&gt;&amp; arr, int target) {
+    int low = 0, high = arr.size() - 1, result = -1;
+
+    while (low &lt;= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == target) {
+            result = mid;
+            high = mid - 1;  // Search left for the first occurrence
+        } else if (arr[mid] &lt; target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return result;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {2, 4, 4, 4, 8, 10};
+    int target = 4;
+    cout &lt;&lt; binarySearchFirst(arr, target) &lt;&lt; endl;  // Output: 1
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-809b-b7e5-f865af2be18c"/><hr id="13f07e06-2ba1-802a-a6e1-ddd876c9b14b"/><h3 id="13f07e06-2ba1-8070-b022-d314c3094630" class=""><strong>6. Merge Intervals</strong></h3><p id="13f07e06-2ba1-803f-a8f6-f98667b0b669" class="">Merge overlapping intervals:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-801c-aa3f-e619aba23f28" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+vector&lt;pair&lt;int, int&gt;&gt; mergeIntervals(vector&lt;pair&lt;int, int&gt;&gt;&amp; intervals) {
+    vector&lt;pair&lt;int, int&gt;&gt; merged;
+    if (intervals.empty()) return merged;
+
+    sort(intervals.begin(), intervals.end());  // Sort by starting time
+    merged.push_back(intervals[0]);
+
+    for (int i = 1; i &lt; intervals.size(); i++) {
+        if (merged.back().second &gt;= intervals[i].first) {
+            merged.back().second = max(merged.back().second, intervals[i].second);
+        } else {
+            merged.push_back(intervals[i]);
+        }
+    }
+
+    return merged;
+}
+
+int main() {
+    vector&lt;pair&lt;int, int&gt;&gt; intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+    auto merged = mergeIntervals(intervals);
+
+    for (auto interval : merged)
+        cout &lt;&lt; &quot;[&quot; &lt;&lt; interval.first &lt;&lt; &quot;, &quot; &lt;&lt; interval.second &lt;&lt; &quot;] &quot;;
+    // Output: [1, 6] [8, 10] [15, 18]
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80be-ae8d-f99579ab92a5"/><h3 id="13f07e06-2ba1-8009-a30c-ea95f4ce3454" class=""><strong>7. Prefix Sum Array</strong></h3><p id="13f07e06-2ba1-804e-b62c-ff99b3729f06" class="">Find the sum of elements in a range:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8018-b28e-c327492e7476" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt; prefixSumArray(vector&lt;int&gt;&amp; arr) {
+    vector&lt;int&gt; prefixSum(arr.size());
+    prefixSum[0] = arr[0];
+
+    for (int i = 1; i &lt; arr.size(); i++) {
+        prefixSum[i] = prefixSum[i - 1] + arr[i];
+    }
+
+    return prefixSum;
+}
+
+int rangeSum(vector&lt;int&gt;&amp; prefixSum, int left, int right) {
+    return left == 0 ? prefixSum[right] : prefixSum[right] - prefixSum[left - 1];
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, 2, 3, 4, 5};
+    auto prefixSum = prefixSumArray(arr);
+    cout &lt;&lt; rangeSum(prefixSum, 1, 3) &lt;&lt; endl;  // Output: 9 (2 + 3 + 4)
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8096-ae5f-f24e5e8cb0b7"/><h3 id="13f07e06-2ba1-8061-b872-f8b10a676180" class=""><strong>8. Majority Element (Moore’s Voting Algorithm)</strong></h3><p id="13f07e06-2ba1-80ac-9234-f515ff0823f5" class="">Find the element that appears more than \( n/2 \) times:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8029-b0a7-fab31008147c" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int findMajorityElement(vector&lt;int&gt;&amp; arr) {
+    int count = 0, candidate = -1;
+
+    for (int num : arr) {
+        if (count == 0) {
+            candidate = num;
+            count = 1;
+        } else {
+            count += (num == candidate) ? 1 : -1;
+        }
+    }
+
+    // Verify the candidate
+    count = 0;
+    for (int num : arr) {
+        if (num == candidate) count++;
+    }
+
+    return (count &gt; arr.size() / 2) ? candidate : -1;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {3, 3, 4, 2, 4, 4, 2, 4, 4};
+    cout &lt;&lt; findMajorityElement(arr) &lt;&lt; endl;  // Output: 4
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8099-a807-c8033c4d8577"/><h3 id="13f07e06-2ba1-8091-b023-f10fee054b31" class=""><strong>9. Find Missing Number (XOR Approach)</strong></h3><p id="13f07e06-2ba1-8087-9ded-c15a622d8eb8" class="">Find the missing number in an array of size \( n \) containing numbers from \( 1 \) to \( n \):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8081-bb8d-c8fd32f3bdc0" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int findMissingNumber(vector&lt;int&gt;&amp; arr) {
+    int n = arr.size() + 1;  // Size should be n+1 including the missing number
+    int xorFull = 0, xorArr = 0;
+
+    for (int i = 1; i &lt;= n; i++) xorFull ^= i;
+    for (int num : arr) xorArr ^= num;
+
+    return xorFull ^ xorArr;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, 2, 4, 5, 6};
+    cout &lt;&lt; findMissingNumber(arr) &lt;&lt; endl;  // Output: 3
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8041-8547-fcd9069d29f8"/><h3 id="13f07e06-2ba1-80bf-b77f-c5f295d49a49" class=""><strong>10. Find Duplicates (Floyd’s Tortoise and Hare)</strong></h3><p id="13f07e06-2ba1-809c-811c-f4f25045fb9e" class="">Find the duplicate in an array of \( n+1 \) integers where each integer is in the range \( [1, n] \):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8041-bac0-c0487c2c5379" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int findDuplicate(vector&lt;int&gt;&amp; arr) {
+    int slow = arr[0], fast = arr[0];
+
+    // Phase 1: Detect cycle
+    do {
+        slow = arr[slow];
+        fast = arr[arr[fast]];
+    } while (slow != fast);
+
+    // Phase 2: Find entrance to cycle
+    slow = arr[0];
+    while (slow != fast) {
+        slow = arr[slow];
+        fast = arr[fast];
+    }
+
+    return slow;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {3, 1, 3, 4, 2};
+    cout &lt;&lt; findDuplicate(arr) &lt;&lt; endl;  // Output: 3
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e0-8f01-fb83d36fac2f"/><h3 id="13f07e06-2ba1-8094-b9f6-ef0cf93caf43" class=""><strong>11. Trapping Rainwater Problem</strong></h3><p id="13f07e06-2ba1-80cc-b9f8-d8fa30711d60" class="">Calculate the total trapped rainwater:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-804c-84a0-f9b7c9e0e1f8" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int trapRainwater(vector&lt;int&gt;&amp; height) {
+    int n = height.size();
+    if (n &lt;= 2) return 0;
+
+    vector&lt;int&gt; leftMax(n), rightMax(n);
+    leftMax[0] = height[0];
+    rightMax[n - 1] = height[n - 1];
+
+    for (int i = 1; i &lt; n; i++)
+        leftMax[i] = max(leftMax[i - 1], height[i]);
+
+    for (int i = n - 2; i &gt;= 0; i--)
+        rightMax[i] = max(rightMax[i + 1], height[i]);
+
+    int water = 0;
+    for (int i = 0; i &lt; n; i++)
+        water += min(leftMax[i], rightMax[i]) - height[i];
+
+    return water;
+}
+
+int main() {
+    vector&lt;int&gt; height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+    cout &lt;&lt; trapRainwater(height) &lt;&lt; endl;  // Output: 6
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80c6-8b1f-d9954d775f12"/><p id="13f07e06-2ba1-8081-bbf8-ed2ed29d9956" class="">
+</p><p id="13f07e06-2ba1-806b-bdb5-d01cf3b50eda" class="">
+</p><hr id="13f07e06-2ba1-80f3-8884-e5d9ccfbd079"/><h3 id="13f07e06-2ba1-8027-b4de-f341b866d11b" class=""><strong>12. Rearrange Array Alternating Positive and Negative Numbers</strong></h3><p id="13f07e06-2ba1-8094-bb54-d56b89bfc577" class="">Rearrange the array so that positive and negative numbers are placed alternatively:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80ea-b259-d3bf06893612" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+void rearrangeArray(vector&lt;int&gt;&amp; arr) {
+    int n = arr.size();
+    vector&lt;int&gt; result(n);
+    int positiveIndex = 0, negativeIndex = 1;
+
+    for (int i = 0; i &lt; n; i++) {
+        if (arr[i] &gt;= 0) {
+            result[positiveIndex] = arr[i];
+            positiveIndex += 2;
+        } else {
+            result[negativeIndex] = arr[i];
+            negativeIndex += 2;
+        }
+    }
+
+    // Copy the rearranged array back to the original array
+    for (int i = 0; i &lt; n; i++) {
+        arr[i] = result[i];
+    }
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, -2, 3, -4, 5, -6};
+    rearrangeArray(arr);
+
+    for (int num : arr) cout &lt;&lt; num &lt;&lt; &quot; &quot;;  // Output: 1 -2 3 -4 5 -6
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80d4-a8f5-e6dfc066d5f3"/><h3 id="13f07e06-2ba1-805e-9ab3-c67e04f48f98" class=""><strong>13. Longest Consecutive Subsequence</strong></h3><p id="13f07e06-2ba1-80b2-b3d2-f9342dbfe203" class="">Find the longest subsequence of consecutive elements in an array:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80fb-8508-d861b8d70347" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_set&gt;
+using namespace std;
+
+int longestConsecutive(vector&lt;int&gt;&amp; nums) {
+    unordered_set&lt;int&gt; numSet(nums.begin(), nums.end());
+    int longest = 0;
+
+    for (int num : nums) {
+        if (numSet.find(num - 1) == numSet.end()) {  // Only check if it&#x27;s the start of a sequence
+            int currentNum = num;
+            int currentStreak = 1;
+
+            while (numSet.find(currentNum + 1) != numSet.end()) {
+                currentNum++;
+                currentStreak++;
+            }
+
+            longest = max(longest, currentStreak);
+        }
+    }
+
+    return longest;
+}
+
+int main() {
+    vector&lt;int&gt; nums = {100, 4, 200, 1, 3, 2};
+    cout &lt;&lt; longestConsecutive(nums) &lt;&lt; endl;  // Output: 4
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8054-8618-f3c611849aae"/><h3 id="13f07e06-2ba1-80c2-85da-d2a13b59ca1d" class=""><strong>14. Subarray with Given Sum</strong></h3><p id="13f07e06-2ba1-80cd-8279-d6a4d44b9b03" class="">Find a contiguous subarray with a given sum:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8067-81ed-eca0ef8e3275" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+bool subarraySum(vector&lt;int&gt;&amp; arr, int target) {
+    int sum = 0;
+    unordered_map&lt;int, int&gt; prefixSum;
+
+    for (int i = 0; i &lt; arr.size(); i++) {
+        sum += arr[i];
+
+        if (sum == target) return true;
+        if (prefixSum.find(sum - target) != prefixSum.end()) return true;
+
+        prefixSum[sum] = i;
+    }
+    return false;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, 4, 20, 3, 10, 5};
+    int target = 33;
+    cout &lt;&lt; subarraySum(arr, target) &lt;&lt; endl;  // Output: 1 (True)
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e8-8e3f-da79327ae201"/><h3 id="13f07e06-2ba1-80ef-8302-ec1bf4e373b7" class=""><strong>15. Intersection of Two Arrays</strong></h3><p id="13f07e06-2ba1-80db-949c-e95c3fbf8c08" class="">Find the intersection of two arrays (common elements):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-801f-a9cd-ec10968efa20" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_set&gt;
+using namespace std;
+
+vector&lt;int&gt; intersectionOfArrays(vector&lt;int&gt;&amp; arr1, vector&lt;int&gt;&amp; arr2) {
+    unordered_set&lt;int&gt; set1(arr1.begin(), arr1.end());
+    unordered_set&lt;int&gt; result;
+
+    for (int num : arr2) {
+        if (set1.find(num) != set1.end()) {
+            result.insert(num);
+        }
+    }
+
+    return vector&lt;int&gt;(result.begin(), result.end());
+}
+
+int main() {
+    vector&lt;int&gt; arr1 = {1, 2, 2, 1};
+    vector&lt;int&gt; arr2 = {2, 2};
+    vector&lt;int&gt; result = intersectionOfArrays(arr1, arr2);
+
+    for (int num : result) cout &lt;&lt; num &lt;&lt; &quot; &quot;;  // Output: 2
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-802e-af66-f3cb655acbae"/><h3 id="13f07e06-2ba1-807e-be64-c57954515a72" class=""><strong>16. Find All Pairs with a Given Sum</strong></h3><p id="13f07e06-2ba1-807e-9936-eb2a948ca7e5" class="">Find all pairs in the array whose sum is equal to a target value:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80ea-93d0-e07e95e9a252" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+vector&lt;pair&lt;int, int&gt;&gt; findPairsWithSum(vector&lt;int&gt;&amp; arr, int target) {
+    unordered_map&lt;int, int&gt; map;
+    vector&lt;pair&lt;int, int&gt;&gt; result;
+
+    for (int num : arr) {
+        int complement = target - num;
+        if (map[complement] &gt; 0) {
+            result.push_back({complement, num});
+            map[complement]--;
+        } else {
+            map[num]++;
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, 2, 3, 4, 3, 2, 1};
+    int target = 4;
+    vector&lt;pair&lt;int, int&gt;&gt; result = findPairsWithSum(arr, target);
+
+    for (auto&amp; p : result)
+        cout &lt;&lt; &quot;(&quot; &lt;&lt; p.first &lt;&lt; &quot;, &quot; &lt;&lt; p.second &lt;&lt; &quot;) &quot;;  // Output: (1, 3) (2, 2) (3, 1)
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80a5-971f-cd50590ef10b"/><h3 id="13f07e06-2ba1-8089-8914-f2c8c40ed084" class=""><strong>17. Count Inversions in an Array</strong></h3><p id="13f07e06-2ba1-802f-93b6-fa17cc805eba" class="">Count the number of inversions in an array (pairs where arr[i] &gt; arr[j] for i &lt; j):</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80ac-aad9-dcda8830bc5e" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int mergeAndCount(vector&lt;int&gt;&amp; arr, int left, int right) {
+    if (left &gt;= right) return 0;
+
+    int mid = left + (right - left) / 2;
+    int invCount = mergeAndCount(arr, left, mid);
+    invCount += mergeAndCount(arr, mid + 1, right);
+
+    // Merge step and count inversions
+    invCount += merge(arr, left, mid, right);
+    return invCount;
+}
+
+int merge(vector&lt;int&gt;&amp; arr, int left, int mid, int right) {
+    int invCount = 0;
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    vector&lt;int&gt; leftArr(n1), rightArr(n2);
+    for (int i = 0; i &lt; n1; i++) leftArr[i] = arr[left + i];
+    for (int i = 0; i &lt; n2; i++) rightArr[i] = arr[mid + 1 + i];
+
+    int i = 0, j = 0, k = left;
+    while (i &lt; n1 &amp;&amp; j &lt; n2) {
+        if (leftArr[i] &lt;= rightArr[j]) {
+            arr[k++] = leftArr[i++];
+        } else {
+            arr[k++] = rightArr[j++];
+            invCount += (n1 - i);  // Count inversions
+        }
+    }
+
+    while (i &lt; n1) arr[k++] = leftArr[i++];
+    while (j &lt; n2) arr[k++] = rightArr[j++];
+
+    return invCount;
+}
+
+int countInversions(vector&lt;int&gt;&amp; arr) {
+    return mergeAndCount(arr, 0, arr.size() - 1);
+}
+
+int main() {
+    vector&lt;int&gt; arr = {1, 20, 6, 4, 5};
+    cout &lt;&lt; countInversions(arr) &lt;&lt; endl;  // Output: 5
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80c4-8a8e-fe823ad824ab"/><h3 id="13f07e06-2ba1-804e-8402-f96133df0e73" class=""><strong>18. Find the Kth Largest Element</strong></h3><p id="13f07e06-2ba1-802f-aed5-d91a61ecab2b" class="">Find the Kth largest element in an array:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8083-ba1b-d55b44a7d487" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; minHeap;
+
+    for (int num : nums) {
+        minHeap.push(num);
+        if (minHeap.size() &gt; k) {
+            minHeap.pop();
+        }
+    }
+
+    return minHeap.top();
+}
+
+int main() {
+    vector&lt;int&gt; arr = {3, 2, 1, 5, 6, 4};
+    int k = 2;
+    cout &lt;&lt; findKthLargest(arr, k) &lt;&lt; endl;  // Output: 5
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-804e-9390-f2a4ce19f5fb"/><p id="13f07e06-2ba1-809d-941e-c92bcf7b478a" class="">These C++ implementations cover the remaining algorithms. Let me know if you need further explanations or more algorithms!</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

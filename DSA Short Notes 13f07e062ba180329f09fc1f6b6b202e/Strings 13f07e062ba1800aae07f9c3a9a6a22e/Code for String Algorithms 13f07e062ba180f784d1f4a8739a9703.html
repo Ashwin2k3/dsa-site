@@ -1,0 +1,1718 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Code for String Algorithms </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13f07e06-2ba1-80f7-84d1-f4a8739a9703" class="page sans"><header><h1 class="page-title">Code for String Algorithms </h1><p class="page-description"></p></header><div class="page-body"><p id="13f07e06-2ba1-803f-9c4c-f3df7cc87911" class="">Here are implementations for some of the key string algorithms commonly asked in interviews:</p><h3 id="13f07e06-2ba1-809e-92e5-f28ac9db8220" class="">1. <strong>Naive String Matching Algorithm</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8004-bd52-f2fd4036d9a4" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+void naiveSearch(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+
+    for (int i = 0; i &lt;= n - m; i++) {
+        int j = 0;
+        while (j &lt; m &amp;&amp; text[i + j] == pattern[j])
+            j++;
+        if (j == m) {
+            cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i &lt;&lt; endl;
+        }
+    }
+}
+
+int main() {
+    string text = &quot;ABABDABACDABABCABAB&quot;;
+    string pattern = &quot;ABAB&quot;;
+    naiveSearch(text, pattern);
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8006-9f60-c6b595522e82" class="">2. <strong>Knuth-Morris-Pratt (KMP) Algorithm</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80fb-a7f1-f2250f719305" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+vector&lt;int&gt; computeLPSArray(string pattern) {
+    int m = pattern.length();
+    vector&lt;int&gt; lps(m, 0);
+    int length = 0; // length of previous longest prefix suffix
+    int i = 1;
+
+    while (i &lt; m) {
+        if (pattern[i] == pattern[length]) {
+            length++;
+            lps[i] = length;
+            i++;
+        } else {
+            if (length != 0) {
+                length = lps[length - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+
+    return lps;
+}
+
+void KMPSearch(string text, string pattern) {
+    vector&lt;int&gt; lps = computeLPSArray(pattern);
+    int n = text.length();
+    int m = pattern.length();
+    int i = 0, j = 0;
+
+    while (i &lt; n) {
+        if (pattern[j] == text[i]) {
+            i++;
+            j++;
+        }
+        if (j == m) {
+            cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i - j &lt;&lt; endl;
+            j = lps[j - 1];
+        } else if (i &lt; n &amp;&amp; pattern[j] != text[i]) {
+            if (j != 0) {
+                j = lps[j - 1];
+            } else {
+                i++;
+            }
+        }
+    }
+}
+
+int main() {
+    string text = &quot;ABABDABACDABABCABAB&quot;;
+    string pattern = &quot;ABAB&quot;;
+    KMPSearch(text, pattern);
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8090-beec-ed00210836c8" class="">3. <strong>Longest Palindromic Substring (Expanding Around Center)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80e0-96e9-c765219f1da8" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string expandAroundCenter(string s, int left, int right) {
+    while (left &gt;= 0 &amp;&amp; right &lt; s.length() &amp;&amp; s[left] == s[right]) {
+        left--;
+        right++;
+    }
+    return s.substr(left + 1, right - left - 1);
+}
+
+string longestPalindrome(string s) {
+    if (s.empty()) return &quot;&quot;;
+
+    string longest = &quot;&quot;;
+    for (int i = 0; i &lt; s.length(); i++) {
+        string odd = expandAroundCenter(s, i, i);
+        string even = expandAroundCenter(s, i, i + 1);
+
+        if (odd.length() &gt; longest.length()) {
+            longest = odd;
+        }
+        if (even.length() &gt; longest.length()) {
+            longest = even;
+        }
+    }
+    return longest;
+}
+
+int main() {
+    string s = &quot;babad&quot;;
+    cout &lt;&lt; &quot;Longest Palindromic Substring: &quot; &lt;&lt; longestPalindrome(s) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8005-a149-c017cdcefdd7" class="">4. <strong>Longest Common Subsequence (LCS)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-800b-b298-edf971dcc7a7" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int LCS(string X, string Y) {
+    int m = X.length();
+    int n = Y.length();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1, 0));
+
+    for (int i = 1; i &lt;= m; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            if (X[i - 1] == Y[j - 1]) {
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[m][n];
+}
+
+int main() {
+    string X = &quot;AGGTAB&quot;;
+    string Y = &quot;GXTXAYB&quot;;
+    cout &lt;&lt; &quot;Length of Longest Common Subsequence: &quot; &lt;&lt; LCS(X, Y) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-809c-a477-f51ea511bc8a" class="">5. <strong>Edit Distance (Levenshtein Distance)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-805d-a672-e2ddd480b4c3" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int min(int x, int y, int z) {
+    return min(min(x, y), z);
+}
+
+int editDistance(string str1, string str2) {
+    int m = str1.length();
+    int n = str2.length();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1));
+
+    for (int i = 0; i &lt;= m; i++) {
+        for (int j = 0; j &lt;= n; j++) {
+            if (i == 0) {
+                dp[i][j] = j;
+            } else if (j == 0) {
+                dp[i][j] = i;
+            } else if (str1[i - 1] == str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = 1 + min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[m][n];
+}
+
+int main() {
+    string str1 = &quot;sitting&quot;;
+    string str2 = &quot;kitten&quot;;
+    cout &lt;&lt; &quot;Edit Distance: &quot; &lt;&lt; editDistance(str1, str2) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80b2-b715-f25060cdb83e" class="">6. <strong>Check if Two Strings are Anagrams</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-804c-9381-dfeddd89d6e1" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+bool areAnagrams(string str1, string str2) {
+    if (str1.length() != str2.length()) {
+        return false;
+    }
+    sort(str1.begin(), str1.end());
+    sort(str2.begin(), str2.end());
+    return str1 == str2;
+}
+
+int main() {
+    string str1 = &quot;listen&quot;;
+    string str2 = &quot;silent&quot;;
+    if (areAnagrams(str1, str2)) {
+        cout &lt;&lt; &quot;The strings are anagrams.&quot; &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; &quot;The strings are not anagrams.&quot; &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80e6-8cc7-dbf94e26252b" class="">7. <strong>Find All Anagrams in a String</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8097-b4c2-df12f4e3980b" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+vector&lt;int&gt; findAnagrams(string s, string p) {
+    vector&lt;int&gt; result;
+    if (s.length() &lt; p.length()) return result;
+
+    unordered_map&lt;char, int&gt; pCount, sCount;
+    for (char c : p) pCount[c]++;
+
+    for (int i = 0; i &lt; p.length(); i++) sCount[s[i]]++;
+
+    if (pCount == sCount) result.push_back(0);
+
+    for (int i = p.length(); i &lt; s.length(); i++) {
+        sCount[s[i]]++;
+        sCount[s[i - p.length()]]--;
+
+        if (sCount[s[i - p.length()]] == 0) sCount.erase(s[i - p.length()]);
+
+        if (pCount == sCount) result.push_back(i - p.length() + 1);
+    }
+    return result;
+}
+
+int main() {
+    string s = &quot;cbaebabacd&quot;;
+    string p = &quot;abc&quot;;
+    vector&lt;int&gt; result = findAnagrams(s, p);
+
+    for (int i : result) {
+        cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-806a-b1aa-ccd80973d67a"/><p id="13f07e06-2ba1-8027-a475-de3fbeba379a" class="">
+</p><h3 id="13f07e06-2ba1-8011-96f3-edd93cfaf78b" class="">8. <strong>Substring Search using Rabin-Karp Algorithm</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80fa-9c4b-c363c6a08d41" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+const int d = 256; // Number of characters in the input alphabet
+const int q = 101; // A prime number
+
+void RabinKarpSearch(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+    int i, j;
+    int p = 0;  // Hash value for pattern
+    int t = 0;  // Hash value for text
+    int h = 1;  // d^(m-1) % q
+
+    // Precompute h = pow(d, m-1) % q
+    for (i = 0; i &lt; m - 1; i++)
+        h = (h * d) % q;
+
+    // Compute hash value of pattern and first window of text
+    for (i = 0; i &lt; m; i++) {
+        p = (d * p + pattern[i]) % q;
+        t = (d * t + text[i]) % q;
+    }
+
+    // Slide the pattern over text one by one
+    for (i = 0; i &lt;= n - m; i++) {
+        // If the hash values match, check for exact match
+        if (p == t) {
+            for (j = 0; j &lt; m; j++) {
+                if (text[i + j] != pattern[j]) break;
+            }
+            if (j == m) cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i &lt;&lt; endl;
+        }
+
+        // Calculate hash value for next window of text: Remove leading digit, add trailing digit
+        if (i &lt; n - m) {
+            t = (d * (t - text[i] * h) + text[i + m]) % q;
+            if (t &lt; 0) t += q;
+        }
+    }
+}
+
+int main() {
+    string text = &quot;GEEKS FOR GEEKS&quot;;
+    string pattern = &quot;GEEKS&quot;;
+    RabinKarpSearch(text, pattern);
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8048-84e6-ec870c8be8f2" class="">9. <strong>Z-Algorithm</strong></h3><p id="13f07e06-2ba1-80bc-9d68-ef9b1cbdae3d" class="">The Z algorithm computes the Z-array, which represents the longest prefix of the string that is also a suffix starting at each position in the string.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8019-b4e7-fa8b5ccf4966" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+vector&lt;int&gt; ZAlgorithm(string s) {
+    int n = s.length();
+    vector&lt;int&gt; z(n, 0);
+    int l = 0, r = 0;
+
+    for (int i = 1; i &lt; n; i++) {
+        if (i &lt;= r) z[i] = min(r - i + 1, z[i - l]);
+        while (i + z[i] &lt; n &amp;&amp; s[z[i]] == s[i + z[i]]) z[i]++;
+        if (i + z[i] - 1 &gt; r) {
+            l = i;
+            r = i + z[i] - 1;
+        }
+    }
+    return z;
+}
+
+int main() {
+    string s = &quot;aaacaaaa&quot;;
+    vector&lt;int&gt; z = ZAlgorithm(s);
+
+    cout &lt;&lt; &quot;Z-array: &quot;;
+    for (int i : z) {
+        cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-809d-96a3-c072cf4f9455" class="">10. <strong>String Compression (Run-Length Encoding)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80e4-867c-dd783a6be29e" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string runLengthEncoding(string s) {
+    string result = &quot;&quot;;
+    int n = s.length();
+
+    for (int i = 0; i &lt; n; i++) {
+        int count = 1;
+        while (i &lt; n - 1 &amp;&amp; s[i] == s[i + 1]) {
+            count++;
+            i++;
+        }
+        result += s[i] + to_string(count);
+    }
+
+    return result;
+}
+
+int main() {
+    string s = &quot;aaabbbccdaa&quot;;
+    cout &lt;&lt; &quot;Encoded string: &quot; &lt;&lt; runLengthEncoding(s) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8098-ad9d-dcf0ef9bbdec" class="">11. <strong>Find the Longest Common Prefix</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8023-9b76-e1e14522419e" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string longestCommonPrefix(vector&lt;string&gt;&amp; strs) {
+    if (strs.empty()) return &quot;&quot;;
+    string prefix = strs[0];
+
+    for (int i = 1; i &lt; strs.size(); i++) {
+        int j = 0;
+        while (j &lt; strs[i].length() &amp;&amp; j &lt; prefix.length() &amp;&amp; strs[i][j] == prefix[j]) {
+            j++;
+        }
+        prefix = prefix.substr(0, j);
+        if (prefix == &quot;&quot;) return &quot;&quot;;
+    }
+    return prefix;
+}
+
+int main() {
+    vector&lt;string&gt; strs = {&quot;flower&quot;, &quot;flow&quot;, &quot;flight&quot;};
+    cout &lt;&lt; &quot;Longest Common Prefix: &quot; &lt;&lt; longestCommonPrefix(strs) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-806b-8ac4-fd7d076ae9fd" class="">12. <strong>String Reverse Words (Reverse each word in the string)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80a9-9182-d019b2b4f497" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+using namespace std;
+
+string reverseWords(string s) {
+    stringstream ss(s);
+    string word, result = &quot;&quot;;
+
+    while (ss &gt;&gt; word) {
+        if (result != &quot;&quot;) result = word + &quot; &quot; + result;
+        else result = word;
+    }
+
+    return result;
+}
+
+int main() {
+    string s = &quot;the sky is blue&quot;;
+    cout &lt;&lt; &quot;Reversed words: &quot; &lt;&lt; reverseWords(s) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8080-91f6-d6ca0f041f5e" class="">13. <strong>Check if a String is a Valid Parentheses String</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80ab-b9e7-df3c1f61e45f" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+bool isValid(string s) {
+    stack&lt;char&gt; st;
+
+    for (char c : s) {
+        if (c == &#x27;(&#x27; || c == &#x27;{&#x27; || c == &#x27;[&#x27;) {
+            st.push(c);
+        } else {
+            if (st.empty()) return false;
+            char top = st.top();
+            st.pop();
+            if ((c == &#x27;)&#x27; &amp;&amp; top != &#x27;(&#x27;) || (c == &#x27;}&#x27; &amp;&amp; top != &#x27;{&#x27;) || (c == &#x27;]&#x27; &amp;&amp; top != &#x27;[&#x27;)) {
+                return false;
+            }
+        }
+    }
+    return st.empty();
+}
+
+int main() {
+    string s = &quot;{[()]}&quot;;
+    if (isValid(s)) cout &lt;&lt; &quot;Valid Parentheses&quot; &lt;&lt; endl;
+    else cout &lt;&lt; &quot;Invalid Parentheses&quot; &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-809f-974e-e6420c6f36a3" class="">14. <strong>Find the Longest Substring Without Repeating Characters</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80c0-9c86-d7a2dbafbc33" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int longestSubstringWithoutRepeating(string s) {
+    unordered_map&lt;char, int&gt; charIndex;
+    int maxLength = 0, start = 0;
+
+    for (int end = 0; end &lt; s.length(); end++) {
+        if (charIndex.find(s[end]) != charIndex.end()) {
+            start = max(start, charIndex[s[end]] + 1);
+        }
+        charIndex[s[end]] = end;
+        maxLength = max(maxLength, end - start + 1);
+    }
+
+    return maxLength;
+}
+
+int main() {
+    string s = &quot;abcabcbb&quot;;
+    cout &lt;&lt; &quot;Longest Substring Without Repeating Characters: &quot; &lt;&lt; longestSubstringWithoutRepeating(s) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8051-8ca1-f8d4c4e4eba1" class="">15. <strong>Palindrome Partitioning</strong></h3><p id="13f07e06-2ba1-8077-9967-d322a1db78ce" class="">Given a string <code>s</code>, partition it such that every substring of the partition is a palindrome. Return all possible palindrome partitioning.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80a7-bc79-cf349e4f2d6b" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+bool isPalindrome(string s, int start, int end) {
+    while (start &lt; end) {
+        if (s[start] != s[end]) return false;
+        start++;
+        end--;
+    }
+    return true;
+}
+
+void partitionHelper(string s, int start, vector&lt;string&gt;&amp; current, vector&lt;vector&lt;string&gt;&gt;&amp; result) {
+    if (start == s.length()) {
+        result.push_back(current);
+        return;
+    }
+
+    for (int end = start; end &lt; s.length(); end++) {
+        if (isPalindrome(s, start, end)) {
+            current.push_back(s.substr(start, end - start + 1));
+            partitionHelper(s, end + 1, current, result);
+            current.pop_back();
+        }
+    }
+}
+
+vector&lt;vector&lt;string&gt;&gt; partition(string s) {
+    vector&lt;vector&lt;string&gt;&gt; result;
+    vector&lt;string&gt; current;
+    partitionHelper(s, 0, current, result);
+    return result;
+}
+
+int main() {
+    string s = &quot;aab&quot;;
+    vector&lt;vector&lt;string&gt;&gt; result = partition(s);
+
+    for (const auto&amp; partition : result) {
+        for (const auto&amp; word : partition) {
+            cout &lt;&lt; word &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e5-be9e-cffee0b435e5"/><h3 id="13f07e06-2ba1-8067-b347-d629a2ede76e" class="">16. <strong>Anagram Check</strong></h3><p id="13f07e06-2ba1-805f-9f0f-d038f28c6908" class="">To check if two strings are anagrams of each other (i.e., they contain the same characters with the same frequencies, but potentially in different orders).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80a9-8bd5-c86700b63f2d" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+bool areAnagrams(string s1, string s2) {
+    if (s1.length() != s2.length()) return false;
+
+    sort(s1.begin(), s1.end());
+    sort(s2.begin(), s2.end());
+
+    return s1 == s2;
+}
+
+int main() {
+    string s1 = &quot;listen&quot;;
+    string s2 = &quot;silent&quot;;
+
+    if (areAnagrams(s1, s2)) {
+        cout &lt;&lt; &quot;Strings are anagrams!&quot; &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; &quot;Strings are not anagrams!&quot; &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8056-ac8d-e0ef547c8ab6" class="">17. <strong>Find All Permutations of a String</strong></h3><p id="13f07e06-2ba1-807b-bddf-c0839e29b557" class="">Generate all permutations of a string using backtracking.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80ad-b056-ea94d0d2427e" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+void permute(string s, int l, int r, vector&lt;string&gt;&amp; result) {
+    if (l == r) {
+        result.push_back(s);
+    } else {
+        for (int i = l; i &lt;= r; i++) {
+            swap(s[l], s[i]);
+            permute(s, l + 1, r, result);
+            swap(s[l], s[i]); // backtrack
+        }
+    }
+}
+
+vector&lt;string&gt; getPermutations(string s) {
+    vector&lt;string&gt; result;
+    permute(s, 0, s.length() - 1, result);
+    return result;
+}
+
+int main() {
+    string s = &quot;abc&quot;;
+    vector&lt;string&gt; result = getPermutations(s);
+
+    for (const string&amp; perm : result) {
+        cout &lt;&lt; perm &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80e5-a3ce-eafd95cda722" class="">18. <strong>Find Substrings of a String</strong></h3><p id="13f07e06-2ba1-80e4-a131-d6af10feebe4" class="">Find all substrings of a string (non-contiguous substrings).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-806d-8921-c891a55c250f" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+void findSubstrings(string s) {
+    int n = s.length();
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = i; j &lt; n; j++) {
+            cout &lt;&lt; s.substr(i, j - i + 1) &lt;&lt; endl;
+        }
+    }
+}
+
+int main() {
+    string s = &quot;abc&quot;;
+    findSubstrings(s);
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80c2-be91-d7e254e42a3c" class="">19. <strong>Longest Palindromic Substring</strong></h3><p id="13f07e06-2ba1-8055-9bdc-db996e2e96ce" class="">Find the longest palindromic substring in a given string.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-800c-98ee-eb6d17a4b869" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string expandFromCenter(string s, int left, int right) {
+    while (left &gt;= 0 &amp;&amp; right &lt; s.length() &amp;&amp; s[left] == s[right]) {
+        left--;
+        right++;
+    }
+    return s.substr(left + 1, right - left - 1);
+}
+
+string longestPalindrome(string s) {
+    if (s.length() &lt; 1) return &quot;&quot;;
+
+    string longest;
+    for (int i = 0; i &lt; s.length(); i++) {
+        string odd = expandFromCenter(s, i, i);
+        string even = expandFromCenter(s, i, i + 1);
+
+        if (odd.length() &gt; longest.length()) longest = odd;
+        if (even.length() &gt; longest.length()) longest = even;
+    }
+
+    return longest;
+}
+
+int main() {
+    string s = &quot;babad&quot;;
+    cout &lt;&lt; &quot;Longest Palindromic Substring: &quot; &lt;&lt; longestPalindrome(s) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-807f-877b-d570e1d3ed3f" class="">20. <strong>Count and Say Sequence</strong></h3><p id="13f07e06-2ba1-8015-a4e1-f81a79322240" class="">The &quot;count-and-say&quot; sequence is a series of strings where each term is generated by describing the previous term. The sequence begins with &quot;1&quot;, and each subsequent term describes the previous one.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80f0-ade1-d4039630cd85" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string countAndSay(int n) {
+    string result = &quot;1&quot;;
+
+    for (int i = 2; i &lt;= n; i++) {
+        string temp = &quot;&quot;;
+        int count = 1;
+
+        for (int j = 1; j &lt; result.length(); j++) {
+            if (result[j] == result[j - 1]) {
+                count++;
+            } else {
+                temp += to_string(count) + result[j - 1];
+                count = 1;
+            }
+        }
+        temp += to_string(count) + result[result.length() - 1];
+        result = temp;
+    }
+
+    return result;
+}
+
+int main() {
+    int n = 5;
+    cout &lt;&lt; &quot;Count and Say Sequence for &quot; &lt;&lt; n &lt;&lt; &quot;: &quot; &lt;&lt; countAndSay(n) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8089-b1d5-f4dc477a4a0a" class="">21. <strong>Wildcard Matching</strong></h3><p id="13f07e06-2ba1-80af-93d6-d459cb02883d" class="">Implement wildcard pattern matching with support for <code>?</code> (matches any single character) and <code>*</code> (matches any sequence of characters, including the empty sequence).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8049-ada1-f3192c05d7b5" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+bool isMatch(string s, string p) {
+    int m = s.length(), n = p.length();
+    vector&lt;vector&lt;bool&gt;&gt; dp(m + 1, vector&lt;bool&gt;(n + 1, false));
+    dp[0][0] = true;
+
+    for (int i = 1; i &lt;= n; i++) {
+        if (p[i - 1] == &#x27;*&#x27;) dp[0][i] = dp[0][i - 1];
+    }
+
+    for (int i = 1; i &lt;= m; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            if (p[j - 1] == s[i - 1] || p[j - 1] == &#x27;?&#x27;) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else if (p[j - 1] == &#x27;*&#x27;) {
+                dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string s = &quot;adceb&quot;, p = &quot;*a*b&quot;;
+    if (isMatch(s, p)) {
+        cout &lt;&lt; &quot;Pattern matches!&quot; &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; &quot;Pattern doesn&#x27;t match!&quot; &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80da-ba08-f252b02edbdf" class="">22. <strong>KMP (Knuth-Morris-Pratt) String Matching Algorithm</strong></h3><p id="13f07e06-2ba1-80fc-8ad6-e75f5c49f6ab" class="">This algorithm is used for finding a pattern in a string efficiently by preprocessing the pattern.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80e8-b82f-dbc48abf48a2" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+vector&lt;int&gt; computeLPSArray(string pattern) {
+    int m = pattern.length();
+    vector&lt;int&gt; lps(m, 0);
+    int length = 0;
+    int i = 1;
+
+    while (i &lt; m) {
+        if (pattern[i] == pattern[length]) {
+            length++;
+            lps[i] = length;
+            i++;
+        } else {
+            if (length != 0) {
+                length = lps[length - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+
+    return lps;
+}
+
+void KMPSearch(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+
+    vector&lt;int&gt; lps = computeLPSArray(pattern);
+
+    int i = 0, j = 0;
+    while (i &lt; n) {
+        if (pattern[j] == text[i]) {
+            i++;
+            j++;
+        }
+
+        if (j == m) {
+            cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i - j &lt;&lt; endl;
+            j = lps[j - 1];
+        } else if (i &lt; n &amp;&amp; pattern[j] != text[i]) {
+            if (j != 0) {
+                j = lps[j - 1];
+            } else {
+                i++;
+            }
+        }
+    }
+}
+
+int main() {
+    string text = &quot;ABABDABACDABABCABAB&quot;;
+    string pattern = &quot;ABABCABAB&quot;;
+
+    KMPSearch(text, pattern);
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80b1-b651-e635f9836fe9" class="">23. <strong>Minimum Window Substring</strong></h3><p id="13f07e06-2ba1-809a-a22e-ddd12c802fa5" class="">Given two strings <code>S</code> and <code>T</code>, find the minimum window in <code>S</code> which contains all characters of <code>T</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-806a-a0e1-daf74da57841" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+string minWindow(string S, string T) {
+    unordered_map&lt;char, int&gt; charCountT, charCountS;
+    for (char c : T) charCountT[c]++;
+
+    int left = 0, right = 0, minLen = INT_MAX, start = 0;
+    int required = charCountT.size(), formed = 0;
+
+    while (right &lt; S.length()) {
+        char rightChar = S[right];
+        charCountS[rightChar]++;
+
+        if (charCountT.count(rightChar) &amp;&amp; charCountS[rightChar] == charCountT[rightChar]) {
+            formed++;
+        }
+
+        while (left &lt;= right &amp;&amp; formed == required) {
+            if (right - left + 1 &lt; minLen) {
+                minLen = right - left + 1;
+                start = left;
+            }
+
+            char
+
+ leftChar = S[left];
+            charCountS[leftChar]--;
+            if (charCountT.count(leftChar) &amp;&amp; charCountS[leftChar] &lt; charCountT[leftChar]) {
+                formed--;
+            }
+            left++;
+        }
+
+        right++;
+    }
+
+    return minLen == INT_MAX ? &quot;&quot; : S.substr(start, minLen);
+}
+
+int main() {
+    string S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot;;
+    cout &lt;&lt; &quot;Minimum Window Substring: &quot; &lt;&lt; minWindow(S, T) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><p id="13f07e06-2ba1-8094-b342-e0c08bd0b675" class="">
+</p><h3 id="13f07e06-2ba1-8085-b901-cf61d83721d6" class="">24. <strong>Z-Algorithm (Pattern Matching)</strong></h3><p id="13f07e06-2ba1-8055-9e65-dcdd25b061dd" class="">The Z-algorithm computes an array <code>Z</code> for a string where <code>Z[i]</code> represents the longest substring starting from <code>i</code> that matches the prefix of the string.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80ed-9c27-d64f62150c75" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+vector&lt;int&gt; ZAlgorithm(string s) {
+    int n = s.length();
+    vector&lt;int&gt; Z(n, 0);
+    int l = 0, r = 0;
+
+    for (int i = 1; i &lt; n; i++) {
+        if (i &lt;= r) {
+            Z[i] = min(r - i + 1, Z[i - l]);
+        }
+
+        while (i + Z[i] &lt; n &amp;&amp; s[Z[i]] == s[i + Z[i]]) {
+            Z[i]++;
+        }
+
+        if (i + Z[i] - 1 &gt; r) {
+            l = i;
+            r = i + Z[i] - 1;
+        }
+    }
+
+    return Z;
+}
+
+int main() {
+    string s = &quot;aabxaabxca&quot;;
+    vector&lt;int&gt; Z = ZAlgorithm(s);
+
+    for (int z : Z) {
+        cout &lt;&lt; z &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8021-828b-f1c07ae64e0a" class="">25. <strong>Rabin-Karp String Matching Algorithm</strong></h3><p id="13f07e06-2ba1-8097-95fe-c7311f18f426" class="">This is a string searching algorithm that uses hashing to find an exact match of a pattern within a text.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80bc-b7fc-fee307fa3e7a" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+void rabinKarp(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+    int d = 256;  // number of characters in the input alphabet
+    int q = 101;  // prime number
+
+    int h = 1;
+    for (int i = 0; i &lt; m - 1; i++) {
+        h = (h * d) % q;
+    }
+
+    int p = 0, t = 0;
+    for (int i = 0; i &lt; m; i++) {
+        p = (p * d + pattern[i]) % q;
+        t = (t * d + text[i]) % q;
+    }
+
+    for (int i = 0; i &lt;= n - m; i++) {
+        if (p == t) {
+            bool match = true;
+            for (int j = 0; j &lt; m; j++) {
+                if (text[i + j] != pattern[j]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i &lt;&lt; endl;
+            }
+        }
+
+        if (i &lt; n - m) {
+            t = (d * (t - text[i] * h) + text[i + m]) % q;
+            if (t &lt; 0) {
+                t = (t + q);
+            }
+        }
+    }
+}
+
+int main() {
+    string text = &quot;GEEKS FOR GEEKS&quot;;
+    string pattern = &quot;GEEK&quot;;
+    rabinKarp(text, pattern);
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80d3-9869-e897d25228c0" class="">26. <strong>Boyer-Moore String Matching Algorithm</strong></h3><p id="13f07e06-2ba1-8022-b841-e108f5841598" class="">An efficient algorithm for string searching, which shifts the pattern based on the mismatch.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80d5-96be-d916da9577b5" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+unordered_map&lt;char, int&gt; badCharHeuristic(string pattern) {
+    unordered_map&lt;char, int&gt; badChar;
+    for (int i = 0; i &lt; pattern.length(); i++) {
+        badChar[pattern[i]] = i;
+    }
+    return badChar;
+}
+
+void boyerMooreSearch(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+    unordered_map&lt;char, int&gt; badChar = badCharHeuristic(pattern);
+
+    int shift = 0;
+    while (shift &lt;= n - m) {
+        int j = m - 1;
+
+        while (j &gt;= 0 &amp;&amp; pattern[j] == text[shift + j]) {
+            j--;
+        }
+
+        if (j &lt; 0) {
+            cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; shift &lt;&lt; endl;
+            shift += (shift + m &lt; n) ? m - badChar[text[shift + m]] : 1;
+        } else {
+            shift += max(1, j - badChar[text[shift + j]]);
+        }
+    }
+}
+
+int main() {
+    string text = &quot;ABAAABCDABCABC&quot;;
+    string pattern = &quot;ABC&quot;;
+    boyerMooreSearch(text, pattern);
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-80ba-af70-cd7e0991b526" class="">27. <strong>Longest Common Prefix (LCP)</strong></h3><p id="13f07e06-2ba1-8050-9728-fe71980efe98" class="">Find the longest common prefix string amongst an array of strings.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80a9-a352-cdb7ab82d636" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string longestCommonPrefix(vector&lt;string&gt;&amp; strs) {
+    if (strs.empty()) return &quot;&quot;;
+
+    string prefix = strs[0];
+
+    for (int i = 1; i &lt; strs.size(); i++) {
+        int j = 0;
+        while (j &lt; prefix.length() &amp;&amp; j &lt; strs[i].length() &amp;&amp; prefix[j] == strs[i][j]) {
+            j++;
+        }
+        prefix = prefix.substr(0, j);
+    }
+
+    return prefix;
+}
+
+int main() {
+    vector&lt;string&gt; strs = {&quot;flower&quot;, &quot;flow&quot;, &quot;flight&quot;};
+    cout &lt;&lt; &quot;Longest Common Prefix: &quot; &lt;&lt; longestCommonPrefix(strs) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-809d-8dc6-e6d9fb8edda6" class="">28. <strong>Substring Search (Naive)</strong></h3><p id="13f07e06-2ba1-8040-a55f-f2444f4b6987" class="">A brute force way of finding a pattern in a string by checking each substring.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80db-b413-d24b0cd2f474" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+void naiveSubstringSearch(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+
+    for (int i = 0; i &lt;= n - m; i++) {
+        int j = 0;
+        while (j &lt; m &amp;&amp; text[i + j] == pattern[j]) {
+            j++;
+        }
+
+        if (j == m) {
+            cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i &lt;&lt; endl;
+        }
+    }
+}
+
+int main() {
+    string text = &quot;ABCABCABAB&quot;;
+    string pattern = &quot;ABC&quot;;
+    naiveSubstringSearch(text, pattern);
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-8069-bd4d-d43ca99bdf7a" class="">29. <strong>Find All Occurrences of a Substring</strong></h3><p id="13f07e06-2ba1-803a-a8bd-d16dce8d6cf3" class="">This is another way of finding all occurrences of a substring within a larger string.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8027-992c-f8b7a85ae2fa" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+void findAllOccurrences(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+
+    for (int i = 0; i &lt;= n - m; i++) {
+        if (text.substr(i, m) == pattern) {
+            cout &lt;&lt; &quot;Pattern found at index &quot; &lt;&lt; i &lt;&lt; endl;
+        }
+    }
+}
+
+int main() {
+    string text = &quot;ABABABAB&quot;;
+    string pattern = &quot;AB&quot;;
+    findAllOccurrences(text, pattern);
+
+    return 0;
+}
+</code></pre><h3 id="13f07e06-2ba1-804b-bc02-d8cd683628e3" class="">30. <strong>Levenshtein Distance (Edit Distance)</strong></h3><p id="13f07e06-2ba1-80da-85a1-d94c42d58c36" class="">The minimum number of operations required to convert one string to another (insert, delete, replace).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8039-ac83-c790093efc5d" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int min(int a, int b, int c) {
+    return min(min(a, b), c);
+}
+
+int levenshteinDistance(string str1, string str2) {
+    int m = str1.length();
+    int n = str2.length();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1));
+
+    for (int i = 0; i &lt;= m; i++) {
+        for (int j = 0; j &lt;= n; j++) {
+            if (i == 0) dp[i][j] = j;
+            else if (j == 0) dp[i][j] = i;
+            else if (str1[i - 1] == str2[j - 1]) dp[i][j] = dp[i - 1][j - 1];
+            else dp[i][j] = 1 + min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string str1 = &quot;kitten&quot;;
+    string str2 = &quot;sitting&quot;;
+    cout &lt;&lt; &quot;Levenshtein Distance: &quot; &lt;&lt; levenshteinDistance(str1, str2) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8089-83af-ed86645baeef"/><p id="13f07e06-2ba1-809a-abb5-c15cc94e216c" class="">These are the remaining key string algorithms with their C++ implementations. They cover a broad range of string manipulation techniques that are often asked in interviews. Let me know if you need more details on any specific algorithm!</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

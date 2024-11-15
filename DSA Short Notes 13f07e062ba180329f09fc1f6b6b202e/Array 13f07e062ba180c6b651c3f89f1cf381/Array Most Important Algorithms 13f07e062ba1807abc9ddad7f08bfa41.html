@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Array Most Important Algorithms</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13f07e06-2ba1-807a-bc9d-dad7f08bfa41" class="page sans"><header><h1 class="page-title">Array Most Important Algorithms</h1><p class="page-description"></p></header><div class="page-body"><p id="13f07e06-2ba1-80a7-bc5a-df44f58b0df8" class="">Here are some of the most commonly asked and widely applicable <strong>array-based algorithms</strong> that are highly useful in problem-solving:</p><hr id="13f07e06-2ba1-8011-a3df-dbddd2e30a9a"/><h3 id="13f07e06-2ba1-804b-bc65-ed9415d29120" class=""><strong>1. Kadane’s Algorithm (Maximum Subarray Sum)</strong></h3><ul id="13f07e06-2ba1-802f-9135-cd3cdb8bbe09" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Find the maximum sum of a contiguous subarray.</li></ul><ul id="13f07e06-2ba1-80c5-a90c-d1e4cfdd2a56" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80e9-a613-d9b632e2ee92" class="bulleted-list"><li style="list-style-type:circle">Solving problems related to subarray sums.</li></ul><ul id="13f07e06-2ba1-80c3-b5ea-ecbe50452eeb" class="bulleted-list"><li style="list-style-type:circle">Variants include finding the maximum circular subarray sum.</li></ul></li></ul><ul id="13f07e06-2ba1-80b5-9955-eb3fd517e964" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-80ec-ba47-f536d0709258"/><h3 id="13f07e06-2ba1-8077-854f-dbca05c321c0" class=""><strong>2. Two-pointer Technique</strong></h3><ul id="13f07e06-2ba1-8090-96fb-d97173c56b86" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Solve problems like finding pairs, triplets, or subarrays with specific properties.</li></ul><ul id="13f07e06-2ba1-801a-bc75-d852cc0486e7" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80f1-8baf-d4758b7b8deb" class="bulleted-list"><li style="list-style-type:circle">Find two numbers that sum to a given value.</li></ul><ul id="13f07e06-2ba1-80ab-a2a4-c8dad9ed314e" class="bulleted-list"><li style="list-style-type:circle">Check if an array is a palindrome.</li></ul><ul id="13f07e06-2ba1-801c-93d0-cae3b575b404" class="bulleted-list"><li style="list-style-type:circle">Count pairs with a difference of \(k\).</li></ul></li></ul><ul id="13f07e06-2ba1-80fc-ac81-d73296bd5838" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\) or \(O(n \log n)\) with sorting.</li></ul><hr id="13f07e06-2ba1-8025-a0c0-d5f12d48efe0"/><h3 id="13f07e06-2ba1-8072-9eba-fd3618f8ec9c" class=""><strong>3. Sliding Window Algorithm</strong></h3><ul id="13f07e06-2ba1-8038-a02c-cb9c842b8066" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Solve problems related to fixed-size or dynamic-size subarrays.</li></ul><ul id="13f07e06-2ba1-8040-8d13-c3faefcca734" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80da-8a32-feeeaeadabc6" class="bulleted-list"><li style="list-style-type:circle">Find the maximum/minimum in all subarrays of size \(k\).</li></ul><ul id="13f07e06-2ba1-80e2-b71a-fa981b5f0d67" class="bulleted-list"><li style="list-style-type:circle">Longest substring with at most \(k\) distinct characters.</li></ul><ul id="13f07e06-2ba1-802e-874b-d9940f3ac137" class="bulleted-list"><li style="list-style-type:circle">Longest subarray with sum at most \(k\).</li></ul></li></ul><ul id="13f07e06-2ba1-8026-a572-ff2f7f84929f" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-80a6-aafb-c99040ae21ff"/><h3 id="13f07e06-2ba1-80bf-b39b-e85f4b8866d7" class=""><strong>4. Dutch National Flag Algorithm (Three-way Partitioning)</strong></h3><ul id="13f07e06-2ba1-8083-a98b-fd3386b26033" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Rearrange elements in an array into three groups (e.g., 0s, 1s, and 2s).</li></ul><ul id="13f07e06-2ba1-8064-a767-cc2d1d0d8aa2" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-8006-a6a0-e2a72e0c1df9" class="bulleted-list"><li style="list-style-type:circle">Sort an array of 0s, 1s, and 2s.</li></ul><ul id="13f07e06-2ba1-80b2-9d2d-daa16e310c80" class="bulleted-list"><li style="list-style-type:circle">Partition an array based on a pivot.</li></ul></li></ul><ul id="13f07e06-2ba1-801c-ab8a-c4874cbdc016" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-80c7-81ae-db0cfeebc0da"/><h3 id="13f07e06-2ba1-80a6-b46b-edf5b8a93cf6" class=""><strong>5. Merge Intervals</strong></h3><ul id="13f07e06-2ba1-8077-8bff-f3d0af1b4d48" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Merge overlapping intervals.</li></ul><ul id="13f07e06-2ba1-8025-bf4c-c05e2de4979d" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-809f-81a4-e92d916ac8ad" class="bulleted-list"><li style="list-style-type:circle">Scheduling problems (e.g., meeting room problems).</li></ul><ul id="13f07e06-2ba1-804f-98b6-c166eaed1234" class="bulleted-list"><li style="list-style-type:circle">Identify free time slots.</li></ul></li></ul><ul id="13f07e06-2ba1-808c-9d0e-d5e1f27a726e" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n \log n)\).</li></ul><hr id="13f07e06-2ba1-8045-a0fa-cf6c3460a91f"/><h3 id="13f07e06-2ba1-80ce-900e-ec10caf3b3de" class=""><strong>6. Binary Search (and Variants)</strong></h3><ul id="13f07e06-2ba1-80e9-98bf-e636d6df50c4" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Search for elements or optimize problems using sorted arrays.</li></ul><ul id="13f07e06-2ba1-805a-8708-ceeb0ef491a9" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-8069-91dd-d6ea053b3ee2" class="bulleted-list"><li style="list-style-type:circle">Find the first/last occurrence of an element.</li></ul><ul id="13f07e06-2ba1-8098-baef-e8da24aafb54" class="bulleted-list"><li style="list-style-type:circle">Search in a rotated sorted array.</li></ul><ul id="13f07e06-2ba1-807e-9df4-db26451b24d1" class="bulleted-list"><li style="list-style-type:circle">Find the minimum in a rotated sorted array.</li></ul><ul id="13f07e06-2ba1-8052-88ed-dc0f41f33526" class="bulleted-list"><li style="list-style-type:circle">Median of two sorted arrays.</li></ul></li></ul><ul id="13f07e06-2ba1-80f8-b766-e98520c42e3a" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(\log n)\).</li></ul><hr id="13f07e06-2ba1-8045-b505-e37e5873924c"/><h3 id="13f07e06-2ba1-8046-97fc-c619f7127487" class=""><strong>7. Prefix Sum and Difference Array</strong></h3><ul id="13f07e06-2ba1-808a-bdc5-e80990db2d34" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Efficiently calculate sums or manipulate ranges in arrays.</li></ul><ul id="13f07e06-2ba1-807d-b38d-e114ac9fd687" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-804c-8285-e7e0d1de28d6" class="bulleted-list"><li style="list-style-type:circle">Range sum queries.</li></ul><ul id="13f07e06-2ba1-80ba-aa38-c13793a93b7d" class="bulleted-list"><li style="list-style-type:circle">Longest subarray with a given sum.</li></ul><ul id="13f07e06-2ba1-808c-b879-e6711b4bedcc" class="bulleted-list"><li style="list-style-type:circle">Update ranges in \(O(1)\) using difference arrays.</li></ul></li></ul><ul id="13f07e06-2ba1-80e9-a3fe-c95098ee00c4" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\) for preprocessing, \(O(1)\) per query.</li></ul><hr id="13f07e06-2ba1-805e-bd1a-d22406ea9431"/><h3 id="13f07e06-2ba1-8022-bd9c-e91c29fd928a" class=""><strong>8. Partitioning Algorithms</strong></h3><ul id="13f07e06-2ba1-8061-8b16-db5195be8130" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Rearrange elements based on specific properties.</li></ul><ul id="13f07e06-2ba1-8082-8b0d-e03a6477626a" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80b2-a7f2-e65b5486f67e" class="bulleted-list"><li style="list-style-type:circle">QuickSort partitioning.</li></ul><ul id="13f07e06-2ba1-8003-bbc2-dfe43ee85296" class="bulleted-list"><li style="list-style-type:circle">Partition array into two subsets with minimal sum difference.</li></ul></li></ul><ul id="13f07e06-2ba1-802a-9cb2-e2a937f46554" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-80e8-ae3e-ed4257914360"/><h3 id="13f07e06-2ba1-8021-ba92-c61a5859a925" class=""><strong>9. Monotonic Stack/Deque for Arrays</strong></h3><ul id="13f07e06-2ba1-8051-a967-d996000ce84c" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Solve problems involving the next/previous greater or smaller elements.</li></ul><ul id="13f07e06-2ba1-80d3-8a7b-f217f5f87860" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-805c-b81b-f8aef0cc0974" class="bulleted-list"><li style="list-style-type:circle">Maximum of all subarrays of size \(k\).</li></ul><ul id="13f07e06-2ba1-8048-9488-c92d4f9d9fea" class="bulleted-list"><li style="list-style-type:circle">Find the nearest greater/smaller element to the left or right.</li></ul></li></ul><ul id="13f07e06-2ba1-8047-9f93-fb7de01fb378" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-8020-adc9-c91b44f10671"/><h3 id="13f07e06-2ba1-80b5-9410-ebbcbad63a7e" class=""><strong>10. Longest Increasing Subsequence (LIS)</strong></h3><ul id="13f07e06-2ba1-803b-bf0c-e8168530f726" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Find the length of the longest increasing subsequence.</li></ul><ul id="13f07e06-2ba1-80c6-a0e3-fc7ac306243a" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80a5-b63e-f2674b7e9a70" class="bulleted-list"><li style="list-style-type:circle">Analyze trends in stock prices.</li></ul><ul id="13f07e06-2ba1-803e-840e-e00c6e65c571" class="bulleted-list"><li style="list-style-type:circle">Variants include maximum sum increasing subsequence.</li></ul></li></ul><ul id="13f07e06-2ba1-8098-8710-f4716cfa20dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n^2)\) (DP) or \(O(n \log n)\) (binary search + DP).</li></ul><hr id="13f07e06-2ba1-8027-a7e8-d1cc12f31530"/><h3 id="13f07e06-2ba1-80c9-b4ee-df151a660032" class=""><strong>11. Majority Element Algorithms</strong></h3><ul id="13f07e06-2ba1-80de-81ad-deb98af82de8" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Find the element that occurs more than \(n/2\) times or \(n/k\) times.</li></ul><ul id="13f07e06-2ba1-8052-a0f3-da1883f6e9ac" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80c2-9f27-e8932ffb1778" class="bulleted-list"><li style="list-style-type:circle">Boyer-Moore Voting Algorithm.</li></ul><ul id="13f07e06-2ba1-807b-a82a-e7cf3d9cd885" class="bulleted-list"><li style="list-style-type:circle">Frequency-based analysis.</li></ul></li></ul><ul id="13f07e06-2ba1-805d-9dc1-e3b11953d69a" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-8028-9ee6-c03704fe46c5"/><h3 id="13f07e06-2ba1-80f0-8df9-f41940968aa4" class=""><strong>12. Merge Sort</strong></h3><ul id="13f07e06-2ba1-8084-a2ab-dc8711e83fef" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Sort an array and solve inversion count problems.</li></ul><ul id="13f07e06-2ba1-8020-8960-d2e2a712d7d9" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80b6-a18a-f36317d49b26" class="bulleted-list"><li style="list-style-type:circle">Sorting.</li></ul><ul id="13f07e06-2ba1-8093-8a9c-cc5a6f4633bf" class="bulleted-list"><li style="list-style-type:circle">Count inversions (number of pairs where \(arr[i] &gt; arr[j]\) for \(i &lt; j\)).</li></ul></li></ul><ul id="13f07e06-2ba1-8095-a9c6-cdec2415ba96" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n \log n)\).</li></ul><hr id="13f07e06-2ba1-8083-b47e-e5891aa3e0bb"/><h3 id="13f07e06-2ba1-8031-b5ac-ee5ea34b056b" class=""><strong>13. XOR-based Problems</strong></h3><ul id="13f07e06-2ba1-804f-bf3f-f7ac1e2b363b" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Solve problems using XOR properties.</li></ul><ul id="13f07e06-2ba1-80e0-913a-f1158cdbc9bf" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80fb-953d-d95cf2d3cd94" class="bulleted-list"><li style="list-style-type:circle">Find the missing number in an array of size \(n\).</li></ul><ul id="13f07e06-2ba1-804e-b7ab-fa035c8fde2b" class="bulleted-list"><li style="list-style-type:circle">Find the number that appears once while all others appear twice.</li></ul></li></ul><ul id="13f07e06-2ba1-8060-82f3-debef0622a4e" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\).</li></ul><hr id="13f07e06-2ba1-8093-927c-f61ccc814bbf"/><h3 id="13f07e06-2ba1-8060-a9bb-e2985c56c62d" class=""><strong>14. Matrix to Array Conversion (Spiral Traversal)</strong></h3><ul id="13f07e06-2ba1-8086-8d40-e37e457a5dd7" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Traverse a 2D matrix in a spiral order.</li></ul><ul id="13f07e06-2ba1-8093-93c5-e557dbabbf1f" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-80d0-a163-e442235c8ccb" class="bulleted-list"><li style="list-style-type:circle">Convert a 2D matrix into a 1D array for specific patterns.</li></ul></li></ul><ul id="13f07e06-2ba1-80c2-91c1-e215d821dbf9" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n \times m)\).</li></ul><hr id="13f07e06-2ba1-8050-b27a-e7aceeaef972"/><h3 id="13f07e06-2ba1-809a-a753-d9436be0d965" class=""><strong>15. Greedy Algorithms for Arrays</strong></h3><ul id="13f07e06-2ba1-807a-a3f4-f620dcaf3a20" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Solve optimization problems.</li></ul><ul id="13f07e06-2ba1-80f1-a817-d41802e73baf" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-8076-8d32-f49d0b3285f0" class="bulleted-list"><li style="list-style-type:circle">Minimize the maximum difference between array elements after \(k\) modifications.</li></ul><ul id="13f07e06-2ba1-8029-b6c8-cb3a77675d87" class="bulleted-list"><li style="list-style-type:circle">Partition labels in arrays.</li></ul></li></ul><ul id="13f07e06-2ba1-80fa-8a62-dd3afd3b4c5f" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: Problem-dependent, generally \(O(n \log n)\) or \(O(n)\).</li></ul><hr id="13f07e06-2ba1-80ed-beca-c5ffae9e3212"/><h3 id="13f07e06-2ba1-80b4-9b32-de90fab2a164" class=""><strong>16. Fast Median/Order Statistics</strong></h3><ul id="13f07e06-2ba1-8011-bcc4-eeb3872b92ae" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Find the \(k\)-th smallest/largest element.</li></ul><ul id="13f07e06-2ba1-8016-afb9-e3240e21e375" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-808c-b41e-c0a9319a2d66" class="bulleted-list"><li style="list-style-type:circle">Quickselect algorithm for median finding.</li></ul><ul id="13f07e06-2ba1-8087-bd29-f605454a880c" class="bulleted-list"><li style="list-style-type:circle">Top \(k\) largest elements.</li></ul></li></ul><ul id="13f07e06-2ba1-80a7-9d92-fbd84564ddc5" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n)\) on average.</li></ul><hr id="13f07e06-2ba1-80fd-bc5f-fa42be679d35"/><h3 id="13f07e06-2ba1-8066-a3ff-d21e5fb9b0fd" class=""><strong>17. Counting Sort and Variants</strong></h3><ul id="13f07e06-2ba1-8061-9166-ca2305ebf26d" class="bulleted-list"><li style="list-style-type:disc"><strong>Problem</strong>: Sort arrays with limited range efficiently.</li></ul><ul id="13f07e06-2ba1-805a-9ba7-d2dc99f54c47" class="bulleted-list"><li style="list-style-type:disc"><strong>Application</strong>:<ul id="13f07e06-2ba1-8015-9daf-c16dfd3d7cb1" class="bulleted-list"><li style="list-style-type:circle">Frequency analysis.</li></ul><ul id="13f07e06-2ba1-8056-89ca-e0973f04693e" class="bulleted-list"><li style="list-style-type:circle">Bucket/Counting/Radix sort for non-comparative sorting.</li></ul></li></ul><ul id="13f07e06-2ba1-803d-b3a5-ddc78c793ce3" class="bulleted-list"><li style="list-style-type:disc"><strong>Complexity</strong>: \(O(n + k)\).</li></ul><hr id="13f07e06-2ba1-80e8-87b3-c3f35c9a8852"/><p id="13f07e06-2ba1-80dc-8fa4-d609fbe30d29" class="">These algorithms cover a wide range of problems, including optimization, searching, sorting, and dynamic programming, making them essential for solving competitive programming and real-world challenges.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

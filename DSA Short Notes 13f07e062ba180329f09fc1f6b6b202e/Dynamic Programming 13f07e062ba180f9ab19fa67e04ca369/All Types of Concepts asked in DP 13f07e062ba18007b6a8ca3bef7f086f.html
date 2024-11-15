@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>All Types of Concepts asked in DP </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13f07e06-2ba1-8007-b6a8-ca3bef7f086f" class="page sans"><header><h1 class="page-title">All Types of Concepts asked in DP </h1><p class="page-description"></p></header><div class="page-body"><p id="13f07e06-2ba1-80e4-9b57-f31a95935ac2" class="">Dynamic Programming (DP) is one of the most important techniques in competitive programming and is widely used to optimize problems that involve overlapping subproblems and optimal substructure. Below are the key concepts and types of problems typically encountered in DP:</p><h3 id="13f07e06-2ba1-80b3-9973-e10e283f1e8e" class="">1. <strong>Classic DP Problems</strong></h3><p id="13f07e06-2ba1-80e6-aad9-fd9fabea183e" class="">These are the foundation of DP and are commonly asked in competitive programming interviews and contests:</p><ul id="13f07e06-2ba1-80da-9f0e-f0e1dcca6fc5" class="bulleted-list"><li style="list-style-type:disc"><strong>Fibonacci Numbers</strong>: Basic example of DP that builds solutions from smaller subproblems.</li></ul><ul id="13f07e06-2ba1-808d-b001-e4badd9f551c" class="bulleted-list"><li style="list-style-type:disc"><strong>Factorial Calculation</strong>: Efficiently computing factorial using DP.</li></ul><ul id="13f07e06-2ba1-802f-a032-f508c57cb35c" class="bulleted-list"><li style="list-style-type:disc"><strong>Nth Tribonacci Number</strong>: Extends Fibonacci sequence, where each number is the sum of the three preceding ones.</li></ul><h3 id="13f07e06-2ba1-80f7-941e-ff9fedcc0818" class="">2. <strong>Knapsack Problem Variants</strong></h3><p id="13f07e06-2ba1-80bf-b013-ebd46b160d12" class="">These are some of the most important and frequently asked DP problems:</p><ul id="13f07e06-2ba1-8072-bc67-dea0e215d1e2" class="bulleted-list"><li style="list-style-type:disc"><strong>0/1 Knapsack</strong>: Given a set of items, each with a weight and value, find the maximum value that can be obtained with a knapsack of limited capacity.</li></ul><ul id="13f07e06-2ba1-8067-bfa7-f8031d55d2b2" class="bulleted-list"><li style="list-style-type:disc"><strong>Unbounded Knapsack</strong>: A variation where you can take an item multiple times.</li></ul><ul id="13f07e06-2ba1-80db-9341-cd1446df0a71" class="bulleted-list"><li style="list-style-type:disc"><strong>Subset Sum Problem</strong>: Determine if there exists a subset of a given set that sums to a specific value.</li></ul><ul id="13f07e06-2ba1-80b9-b47d-d247fa63687f" class="bulleted-list"><li style="list-style-type:disc"><strong>Partition Problem</strong>: Check if a set can be partitioned into two subsets with equal sum.</li></ul><h3 id="13f07e06-2ba1-808e-8914-c73d15e6b892" class="">3. <strong>Coin Change Problem</strong></h3><ul id="13f07e06-2ba1-80ae-8328-cbd9e53394f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Min Coins</strong>: Given a set of coins, find the minimum number of coins needed to make a certain amount.</li></ul><ul id="13f07e06-2ba1-8011-a161-f40eac308d79" class="bulleted-list"><li style="list-style-type:disc"><strong>Max Number of Ways to Make Change</strong>: Find the number of ways to make a certain amount using the given coins.</li></ul><h3 id="13f07e06-2ba1-80a6-80d5-cc0bc927c268" class="">4. <strong>Longest Increasing Subsequence (LIS)</strong></h3><p id="13f07e06-2ba1-8028-8fb9-f5abf86583c3" class="">This is a classic DP problem:</p><ul id="13f07e06-2ba1-808a-9aba-d130ec0de65e" class="bulleted-list"><li style="list-style-type:disc"><strong>Standard LIS</strong>: Given an array of numbers, find the length of the longest increasing subsequence.</li></ul><ul id="13f07e06-2ba1-8082-b48b-cbdafc537435" class="bulleted-list"><li style="list-style-type:disc"><strong>LIS with Binary Search Optimization</strong>: Optimized approach using binary search to reduce time complexity.</li></ul><h3 id="13f07e06-2ba1-8091-b08f-d8f051c90a73" class="">5. <strong>Longest Common Subsequence (LCS)</strong></h3><ul id="13f07e06-2ba1-8085-8fe3-ead357c2fbb4" class="bulleted-list"><li style="list-style-type:disc"><strong>LCS between Two Strings</strong>: Find the length of the longest common subsequence between two strings.</li></ul><ul id="13f07e06-2ba1-8099-8f81-c360e4dfd36d" class="bulleted-list"><li style="list-style-type:disc"><strong>LCS with Three Strings</strong>: A variation where the LCS is computed for three strings.</li></ul><h3 id="13f07e06-2ba1-80c8-8b37-ec9f75668b0d" class="">6. <strong>Longest Palindromic Subsequence</strong></h3><ul id="13f07e06-2ba1-807c-95af-fe24dc8e8660" class="bulleted-list"><li style="list-style-type:disc"><strong>LPS</strong>: Find the longest subsequence of a string that is a palindrome.</li></ul><ul id="13f07e06-2ba1-80c0-ba80-e10fd8adb5f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Minimum Deletions to Make a String Palindromic</strong>: Use LCS on the string and its reverse to find the number of deletions needed.</li></ul><h3 id="13f07e06-2ba1-807d-888e-cf4374b9e5ee" class="">7. <strong>Matrix Chain Multiplication</strong></h3><ul id="13f07e06-2ba1-8076-9b35-eb2e35fba3bb" class="bulleted-list"><li style="list-style-type:disc"><strong>Optimal Matrix Multiplication Order</strong>: Given a sequence of matrices, find the most efficient way to multiply them together in terms of scalar multiplications.</li></ul><h3 id="13f07e06-2ba1-80b0-a13e-c31ee0f08d88" class="">8. <strong>Rod Cutting Problem</strong></h3><ul id="13f07e06-2ba1-8007-bb75-c93bbefdb60a" class="bulleted-list"><li style="list-style-type:disc">Given a rod of length <code>n</code>, and prices for each length, determine the maximum revenue obtainable by cutting the rod into pieces.</li></ul><h3 id="13f07e06-2ba1-809e-9dbd-c9130182066c" class="">9. <strong>0-1 Knapsack with Multiple Items</strong></h3><ul id="13f07e06-2ba1-8062-a2ad-d98eb8650db5" class="bulleted-list"><li style="list-style-type:disc"><strong>Multiple Knapsack</strong>: In this variation, the knapsack can hold multiple items of the same type, so you need to handle repetitions efficiently.</li></ul><h3 id="13f07e06-2ba1-8056-871e-e826c3dab10d" class="">10. <strong>Edit Distance (Levenshtein Distance)</strong></h3><ul id="13f07e06-2ba1-8083-b6bc-d65b886b7b50" class="bulleted-list"><li style="list-style-type:disc">Find the minimum number of operations (insertions, deletions, substitutions) required to convert one string into another.</li></ul><h3 id="13f07e06-2ba1-80ad-87c7-fb3af5857357" class="">11. <strong>Matrix Path Problems</strong></h3><ul id="13f07e06-2ba1-804e-978c-ef501727c823" class="bulleted-list"><li style="list-style-type:disc"><strong>Unique Paths</strong>: Given a grid, find the number of ways to reach the bottom-right corner from the top-left corner.</li></ul><ul id="13f07e06-2ba1-802c-b4ae-e2263c00c22f" class="bulleted-list"><li style="list-style-type:disc"><strong>Minimum Path Sum</strong>: Find the path in a grid that has the smallest sum from top-left to bottom-right.</li></ul><h3 id="13f07e06-2ba1-80be-9b2e-c2ad60d6270a" class="">12. <strong>Subset Problems</strong></h3><ul id="13f07e06-2ba1-8063-a251-e3d62ff770f2" class="bulleted-list"><li style="list-style-type:disc"><strong>Count Subsets with Sum K</strong>: Given an array, count the number of subsets whose sum equals a given target.</li></ul><ul id="13f07e06-2ba1-80fd-8735-e85f10386113" class="bulleted-list"><li style="list-style-type:disc"><strong>Find All Subsets with Sum K</strong>: Similar to the previous problem, but output the subsets themselves.</li></ul><h3 id="13f07e06-2ba1-804a-a5b7-c73dc542fd1c" class="">13. <strong>Game Theory Problems</strong></h3><ul id="13f07e06-2ba1-80f0-823b-c340cf0a93f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Nim Game</strong>: Find the winner of a game where players take turns removing objects from piles.</li></ul><ul id="13f07e06-2ba1-8016-b433-e2225aa20a1c" class="bulleted-list"><li style="list-style-type:disc"><strong>Optimal Strategy for a Game</strong>: Involves selecting moves that maximize the player&#x27;s advantage.</li></ul><h3 id="13f07e06-2ba1-8066-82ef-d9b024c6f40d" class="">14. <strong>Bitmasking (DP with Bitmask)</strong></h3><ul id="13f07e06-2ba1-8082-b147-fb19038142d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Traveling Salesman Problem (TSP)</strong>: Find the shortest path that visits all cities and returns to the origin.</li></ul><ul id="13f07e06-2ba1-80d5-94f8-ce9e8e4137d9" class="bulleted-list"><li style="list-style-type:disc"><strong>Subset Sum with DP and Bitmask</strong>: Use bitmask to track subsets and DP to calculate possible sums.</li></ul><h3 id="13f07e06-2ba1-809d-8124-db1143bda824" class="">15. <strong>Dynamic Programming on Trees</strong></h3><ul id="13f07e06-2ba1-80dc-8de7-c14aa143b44c" class="bulleted-list"><li style="list-style-type:disc"><strong>Tree DP</strong>: Problems that involve finding the optimal solution by considering different subtrees of a tree.<ul id="13f07e06-2ba1-8087-94fb-ee4ce9173449" class="bulleted-list"><li style="list-style-type:circle">Examples: Counting the number of paths, finding the longest path, or finding the diameter of the tree.</li></ul></li></ul><h3 id="13f07e06-2ba1-8046-b1f7-ceb378631aa1" class="">16. <strong>DP with Strings</strong></h3><ul id="13f07e06-2ba1-80f9-86a4-f994d0170951" class="bulleted-list"><li style="list-style-type:disc"><strong>String Matching and Regular Expressions</strong>: Dynamic programming for pattern matching with wildcards or regex.</li></ul><ul id="13f07e06-2ba1-8066-b5f0-f039a8d11579" class="bulleted-list"><li style="list-style-type:disc"><strong>Palindrome Partitioning</strong>: Given a string, partition it into the fewest palindromic substrings.</li></ul><h3 id="13f07e06-2ba1-8088-bea8-c2fd947452d0" class="">17. <strong>Knapsack with Dependencies</strong></h3><ul id="13f07e06-2ba1-80fb-8b69-c00d2f67f241" class="bulleted-list"><li style="list-style-type:disc"><strong>Task Scheduling</strong>: Given tasks with dependencies, schedule them in a way that optimizes some criterion (e.g., minimizing makespan).</li></ul><h3 id="13f07e06-2ba1-8036-8430-c91d20b38303" class="">18. <strong>Palindrome Subsequence Problems</strong></h3><ul id="13f07e06-2ba1-80b1-9393-e1fb62056023" class="bulleted-list"><li style="list-style-type:disc"><strong>Max Palindromic Substring</strong>: Find the longest palindromic substring in a string.</li></ul><ul id="13f07e06-2ba1-800b-a38f-f8ecbd062dc9" class="bulleted-list"><li style="list-style-type:disc"><strong>Palindrome Partitioning</strong>: Partition a string into palindromic substrings with the minimum number of cuts.</li></ul><h3 id="13f07e06-2ba1-807c-89f6-f7141fbd7d76" class="">19. <strong>Subsequence with Maximum Sum</strong></h3><ul id="13f07e06-2ba1-809e-b2eb-e4286fec3151" class="bulleted-list"><li style="list-style-type:disc">Given an array, find the subsequence such that the sum of the elements in the subsequence is maximized.</li></ul><h3 id="13f07e06-2ba1-805b-b4a7-f284198dd7ec" class="">20. <strong>Counting DP</strong></h3><ul id="13f07e06-2ba1-80c3-8d44-e06a9632381e" class="bulleted-list"><li style="list-style-type:disc"><strong>Counting Paths in Grid</strong>: Count the number of distinct paths from one point to another in a grid, considering obstacles or constraints.</li></ul><ul id="13f07e06-2ba1-80ca-b98f-e15d44e33d4a" class="bulleted-list"><li style="list-style-type:disc"><strong>Counting Triangular Numbers</strong>: Count how many different ways an integer can be expressed as the sum of triangular numbers.</li></ul><h3 id="13f07e06-2ba1-8069-a711-e4aa902ee079" class="">21. <strong>Bellman-Ford Algorithm</strong></h3><ul id="13f07e06-2ba1-800d-b90a-c6c367922f18" class="bulleted-list"><li style="list-style-type:disc">This is used for solving the shortest path problem in graphs with negative edge weights and detecting negative cycles.</li></ul><h3 id="13f07e06-2ba1-80aa-939a-dfb438bb62fa" class="">22. <strong>Maximum Subarray Sum (Kadane’s Algorithm)</strong></h3><ul id="13f07e06-2ba1-80a2-bd51-c5a340183945" class="bulleted-list"><li style="list-style-type:disc"><strong>Standard Kadane’s Algorithm</strong>: Find the maximum sum of a contiguous subarray.</li></ul><ul id="13f07e06-2ba1-8082-9cbe-ff1f4959eb6e" class="bulleted-list"><li style="list-style-type:disc"><strong>Maximum Sum Subsequence with No Adjacent Elements</strong>: Find the maximum sum subsequence such that no two elements are adjacent.</li></ul><h3 id="13f07e06-2ba1-8061-bdb9-d9cb9d5d5218" class="">23. <strong>Count of Palindromes</strong></h3><ul id="13f07e06-2ba1-8058-94bd-de70820f8ca7" class="bulleted-list"><li style="list-style-type:disc"><strong>Counting Palindromic Substrings</strong>: Count how many palindromic substrings exist in a string.</li></ul><ul id="13f07e06-2ba1-809b-a84a-e4b80c79478d" class="bulleted-list"><li style="list-style-type:disc"><strong>Min Cuts to Make Palindrome</strong>: Given a string, find the minimum number of cuts required to split the string into palindromes.</li></ul><h3 id="13f07e06-2ba1-8017-b6f0-eb33046a7c6e" class="">24. <strong>Longest Common Substring</strong></h3><ul id="13f07e06-2ba1-80f3-b509-f187eda68b6b" class="bulleted-list"><li style="list-style-type:disc"><strong>LCS with Exact Matching</strong>: Unlike subsequences, substrings are contiguous portions of the string.</li></ul><h3 id="13f07e06-2ba1-804c-b9ec-dcf2b168c5c2" class="">25. <strong>Counting Path Problems</strong></h3><ul id="13f07e06-2ba1-8015-af22-c3e70e9de771" class="bulleted-list"><li style="list-style-type:disc"><strong>Count Paths in a Grid with Obstacles</strong>: Use DP to count paths from one point to another in a grid with obstacles.</li></ul><h3 id="13f07e06-2ba1-808f-ab47-e9fbe61a0275" class="">26. <strong>Floyd-Warshall Algorithm (All Pair Shortest Path)</strong></h3><ul id="13f07e06-2ba1-801d-ba0d-c01f21f82cde" class="bulleted-list"><li style="list-style-type:disc">A DP approach to finding the shortest paths between all pairs of vertices in a weighted graph.</li></ul><h3 id="13f07e06-2ba1-803f-ba83-d774fe8d06e9" class="">27. <strong>Weighted Interval Scheduling</strong></h3><ul id="13f07e06-2ba1-8000-a25f-f4c32abd5776" class="bulleted-list"><li style="list-style-type:disc">Given a set of intervals with associated weights, find the maximum weight of non-overlapping intervals.</li></ul><h3 id="13f07e06-2ba1-8097-9718-e425453ca276" class="">28. <strong>KnapSack with Limited Item Quantities</strong></h3><ul id="13f07e06-2ba1-8007-911e-f6558786fb02" class="bulleted-list"><li style="list-style-type:disc">Each item can appear a limited number of times in the knapsack (similar to bounded knapsack).</li></ul><hr id="13f07e06-2ba1-8089-a085-c6c93a306eb4"/><h3 id="13f07e06-2ba1-80ee-b701-f2c6c8d14fe9" class="">Common Patterns in DP Problems:</h3><ol type="1" id="13f07e06-2ba1-80a4-8e03-fd60e9a73c37" class="numbered-list" start="1"><li><strong>Overlapping Subproblems</strong>: The problem can be broken down into smaller subproblems that are solved multiple times. Storing the results of subproblems (memoization or tabulation) helps avoid redundant work.</li></ol><ol type="1" id="13f07e06-2ba1-8001-81f3-c9a7f7d5f14d" class="numbered-list" start="2"><li><strong>Optimal Substructure</strong>: The optimal solution to the problem can be constructed from optimal solutions to its subproblems.</li></ol><ol type="1" id="13f07e06-2ba1-80ef-a8e2-dd026ba1ce61" class="numbered-list" start="3"><li><strong>Tabulation vs. Memoization</strong>:<ul id="13f07e06-2ba1-80b0-bc06-def0e2f97e46" class="bulleted-list"><li style="list-style-type:disc"><strong>Memoization</strong> (Top-Down): Using recursion with a cache to store previously computed values.</li></ul><ul id="13f07e06-2ba1-80c9-a8eb-c26a0f22f6f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Tabulation</strong> (Bottom-Up): Building up the solution iteratively using a table, typically avoiding recursion.</li></ul></li></ol><hr id="13f07e06-2ba1-80fb-8d7c-e442943c5a0d"/><p id="13f07e06-2ba1-8091-be17-dbda037b23ba" class="">These concepts form the basis of most DP problems in competitive programming. Mastery of these will provide a strong foundation for solving a wide variety of optimization and decision-making problems.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

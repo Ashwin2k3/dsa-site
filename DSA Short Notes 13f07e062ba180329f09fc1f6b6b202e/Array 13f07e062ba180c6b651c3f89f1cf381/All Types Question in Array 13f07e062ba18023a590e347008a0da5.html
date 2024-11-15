@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>All Types Question in Array</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13f07e06-2ba1-8023-a590-e347008a0da5" class="page sans"><header><h1 class="page-title">All Types Question in Array</h1><p class="page-description"></p></header><div class="page-body"><p id="13f07e06-2ba1-8087-b615-fc1df21dacbc" class="">Array-based questions are diverse and can test various concepts ranging from basic operations to advanced problem-solving. Here’s a comprehensive list of concepts around which array-related questions can be framed:</p><hr id="13f07e06-2ba1-80e6-9674-da723fd0a5dc"/><h3 id="13f07e06-2ba1-803f-8e8e-d25047da9263" class=""><strong>Basic Operations</strong></h3><ol type="1" id="13f07e06-2ba1-801c-8914-f3c40a3a0f76" class="numbered-list" start="1"><li><strong>Insertion and Deletion</strong><ul id="13f07e06-2ba1-803c-805a-ca0f49c6f32e" class="bulleted-list"><li style="list-style-type:disc">Insert an element at a specific index.</li></ul><ul id="13f07e06-2ba1-80a4-ac1c-dbca91fd6561" class="bulleted-list"><li style="list-style-type:disc">Delete an element from a specific index.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-804e-9b66-e1e51024ef50" class="numbered-list" start="2"><li><strong>Traversal</strong><ul id="13f07e06-2ba1-804d-830d-db3425f41fb7" class="bulleted-list"><li style="list-style-type:disc">Print all elements of an array.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80c9-b0c7-e6a4dc247570" class="numbered-list" start="3"><li><strong>Search</strong><ul id="13f07e06-2ba1-8047-acdc-e8ca08128fb1" class="bulleted-list"><li style="list-style-type:disc">Find the index of a given element.</li></ul><ul id="13f07e06-2ba1-8002-8064-c48b26b06155" class="bulleted-list"><li style="list-style-type:disc">Binary search on a sorted array.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-802a-9489-f3e5440fe721" class="numbered-list" start="4"><li><strong>Update</strong><ul id="13f07e06-2ba1-807b-af41-d68407191110" class="bulleted-list"><li style="list-style-type:disc">Update the value at a specific index.</li></ul></li></ol><hr id="13f07e06-2ba1-806a-bb0b-f045b6d69f93"/><h3 id="13f07e06-2ba1-8024-a25f-cb5518da5cee" class=""><strong>Frequency and Counting</strong></h3><ol type="1" id="13f07e06-2ba1-80d9-b42a-e974ebcbcd8c" class="numbered-list" start="1"><li><strong>Frequency Count</strong><ul id="13f07e06-2ba1-8062-9b86-c26408bc05cf" class="bulleted-list"><li style="list-style-type:disc">Count the occurrences of each element.</li></ul><ul id="13f07e06-2ba1-80ef-b2d1-edb1948ce938" class="bulleted-list"><li style="list-style-type:disc">Identify the most/least frequent element.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-8095-9108-f6f03aaaaa70" class="numbered-list" start="2"><li><strong>Majority Element</strong><ul id="13f07e06-2ba1-8057-822f-c6ba298f467e" class="bulleted-list"><li style="list-style-type:disc">Find the element that appears more than <code>n/2</code> times.</li></ul><ul id="13f07e06-2ba1-80d5-b0a9-e8ec0dcfa469" class="bulleted-list"><li style="list-style-type:disc">Elements appearing more than <code>n/k</code> times.</li></ul></li></ol><hr id="13f07e06-2ba1-8046-a39c-df98e9ec48e6"/><h3 id="13f07e06-2ba1-80cd-8aad-ee3852e7b11f" class=""><strong>Sorting and Rearrangement</strong></h3><ol type="1" id="13f07e06-2ba1-804f-92ea-f9c1f419a5a0" class="numbered-list" start="1"><li><strong>Sorting</strong><ul id="13f07e06-2ba1-8017-bafd-d4413d04c571" class="bulleted-list"><li style="list-style-type:disc">Sort an array in ascending/descending order.</li></ul><ul id="13f07e06-2ba1-8033-bcda-f0e55a2ea27c" class="bulleted-list"><li style="list-style-type:disc">Sort based on custom criteria (e.g., even first, then odd).</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-801d-a7c9-fe26e3fc34d8" class="numbered-list" start="2"><li><strong>Rearrangement</strong><ul id="13f07e06-2ba1-803f-9687-e032a4800527" class="bulleted-list"><li style="list-style-type:disc">Segregate positives and negatives.</li></ul><ul id="13f07e06-2ba1-8073-9673-f8d7d50c5758" class="bulleted-list"><li style="list-style-type:disc">Move all zeros to the end.</li></ul><ul id="13f07e06-2ba1-806d-9a54-c8b2643df05c" class="bulleted-list"><li style="list-style-type:disc">Alternate positives and negatives.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80d0-8ace-f25e454c977c" class="numbered-list" start="3"><li><strong>Wave-like Array</strong><ul id="13f07e06-2ba1-80aa-b38f-d88fbb5378c6" class="bulleted-list"><li style="list-style-type:disc">Arrange elements in a wave pattern (<code>arr[0] &gt;= arr[1] &lt;= arr[2]</code>).</li></ul></li></ol><hr id="13f07e06-2ba1-8074-bfc3-e638b3959526"/><h3 id="13f07e06-2ba1-8066-9fbb-ccbeb6156c6d" class=""><strong>Searching and Pair Problems</strong></h3><ol type="1" id="13f07e06-2ba1-8044-b6f4-f2128b1c39d0" class="numbered-list" start="1"><li><strong>Two-pointer Techniques</strong><ul id="13f07e06-2ba1-80f4-bc02-dee86493463e" class="bulleted-list"><li style="list-style-type:disc">Find a pair with a given sum.</li></ul><ul id="13f07e06-2ba1-8023-b0bb-c589f35576c6" class="bulleted-list"><li style="list-style-type:disc">Find a triplet with a given sum.</li></ul><ul id="13f07e06-2ba1-807a-9982-ca8d678e88f6" class="bulleted-list"><li style="list-style-type:disc">Find all pairs with a difference <code>k</code>.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80d1-a991-e833805738d8" class="numbered-list" start="2"><li><strong>Binary Search Variants</strong><ul id="13f07e06-2ba1-8067-8620-d48976cb65fd" class="bulleted-list"><li style="list-style-type:disc">Find the first/last occurrence of a number.</li></ul><ul id="13f07e06-2ba1-8096-acda-f7f90487a643" class="bulleted-list"><li style="list-style-type:disc">Count occurrences of a number.</li></ul><ul id="13f07e06-2ba1-8014-82dc-e998ff4abc72" class="bulleted-list"><li style="list-style-type:disc">Search in a rotated sorted array.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-800e-bc88-d63e991c2c8f" class="numbered-list" start="3"><li><strong>Closest Pair</strong><ul id="13f07e06-2ba1-8074-bcff-e627f9cd1b6e" class="bulleted-list"><li style="list-style-type:disc">Find a pair with the smallest difference.</li></ul></li></ol><hr id="13f07e06-2ba1-8053-976b-e7d096eb49bb"/><h3 id="13f07e06-2ba1-80cd-bdfb-ca2eabec98de" class=""><strong>Subarrays and Subsets</strong></h3><ol type="1" id="13f07e06-2ba1-80f1-9065-cf47dfa6d43d" class="numbered-list" start="1"><li><strong>Subarray Problems</strong><ul id="13f07e06-2ba1-800e-8130-d949f3c9b38b" class="bulleted-list"><li style="list-style-type:disc">Find the subarray with the maximum sum (Kadane’s Algorithm).</li></ul><ul id="13f07e06-2ba1-8037-9fec-f9f5715f41c1" class="bulleted-list"><li style="list-style-type:disc">Longest subarray with a given sum.</li></ul><ul id="13f07e06-2ba1-80c2-a073-d3f578d9a518" class="bulleted-list"><li style="list-style-type:disc">Longest subarray with equal 0s and 1s.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80b3-ad78-d64e6e1b4296" class="numbered-list" start="2"><li><strong>Subset Problems</strong><ul id="13f07e06-2ba1-801e-b485-d8b45cccc368" class="bulleted-list"><li style="list-style-type:disc">Generate all subsets.</li></ul><ul id="13f07e06-2ba1-80fa-b0c6-c4056b02890e" class="bulleted-list"><li style="list-style-type:disc">Subset with a given sum.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80ca-aa31-eebe244ca403" class="numbered-list" start="3"><li><strong>Sliding Window</strong><ul id="13f07e06-2ba1-8018-ad83-df45add5ee36" class="bulleted-list"><li style="list-style-type:disc">Maximum/minimum of all subarrays of size <code>k</code>.</li></ul><ul id="13f07e06-2ba1-80a5-85ea-f0e7655cd648" class="bulleted-list"><li style="list-style-type:disc">Longest substring with at most <code>k</code> distinct elements.</li></ul></li></ol><hr id="13f07e06-2ba1-8085-af61-d3205ce5dfb8"/><h3 id="13f07e06-2ba1-80bb-b7c8-caf342a5580b" class=""><strong>Mathematical and Statistical Concepts</strong></h3><ol type="1" id="13f07e06-2ba1-808f-a44e-f403c2c979f7" class="numbered-list" start="1"><li><strong>Prefix and Suffix Arrays</strong><ul id="13f07e06-2ba1-80a9-a78f-faf03c3562a2" class="bulleted-list"><li style="list-style-type:disc">Compute prefix sum/suffix sum.</li></ul><ul id="13f07e06-2ba1-8024-aeb0-fb2cd3864a7f" class="bulleted-list"><li style="list-style-type:disc">Range sum queries using prefix arrays.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80f9-b8f6-c8782439f056" class="numbered-list" start="2"><li><strong>Mathematical Properties</strong><ul id="13f07e06-2ba1-8045-ad37-c2697f21d781" class="bulleted-list"><li style="list-style-type:disc">Find the missing number in a series.</li></ul><ul id="13f07e06-2ba1-8086-bf6c-eb9f0fefc818" class="bulleted-list"><li style="list-style-type:disc">Check if an array can form an arithmetic progression.</li></ul><ul id="13f07e06-2ba1-80f6-8bfe-d853bf35719d" class="bulleted-list"><li style="list-style-type:disc">Maximum product subarray.</li></ul></li></ol><hr id="13f07e06-2ba1-8042-8355-f7f087ce4a10"/><h3 id="13f07e06-2ba1-802a-a366-da6a17799e8b" class=""><strong>Special Arrays</strong></h3><ol type="1" id="13f07e06-2ba1-809c-b53f-d31ea5082965" class="numbered-list" start="1"><li><strong>Rotations and Cyclic Operations</strong><ul id="13f07e06-2ba1-80bc-b7ad-f6bcbc35efd4" class="bulleted-list"><li style="list-style-type:disc">Rotate an array <code>k</code> times.</li></ul><ul id="13f07e06-2ba1-80e9-94d3-cd5fceaa6b10" class="bulleted-list"><li style="list-style-type:disc">Find the pivot in a rotated array.</li></ul><ul id="13f07e06-2ba1-8005-bb3d-ffde7de633b5" class="bulleted-list"><li style="list-style-type:disc">Circular subarray problems.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80af-99f3-e742bd24ff78" class="numbered-list" start="2"><li><strong>Sparse Arrays</strong><ul id="13f07e06-2ba1-8041-a44b-ccba0647c740" class="bulleted-list"><li style="list-style-type:disc">Count the number of non-zero elements.</li></ul><ul id="13f07e06-2ba1-80df-a8c2-cfff9aa03d4f" class="bulleted-list"><li style="list-style-type:disc">Store and manipulate sparse arrays efficiently.</li></ul></li></ol><hr id="13f07e06-2ba1-80ac-b1ab-c08572e6b7a4"/><h3 id="13f07e06-2ba1-8002-b53c-dac3bc9560ba" class=""><strong>Optimization Problems</strong></h3><ol type="1" id="13f07e06-2ba1-8004-9555-e0503d290f2f" class="numbered-list" start="1"><li><strong>Greedy Approach</strong><ul id="13f07e06-2ba1-80c5-8dc7-d1bf0c7f1737" class="bulleted-list"><li style="list-style-type:disc">Minimize the maximum difference between heights after modifying elements.</li></ul><ul id="13f07e06-2ba1-80ce-94e2-d1bd052cfab3" class="bulleted-list"><li style="list-style-type:disc">Partition an array into two subsets with minimum difference.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80fb-b80c-cf9382059dcf" class="numbered-list" start="2"><li><strong>Dynamic Programming</strong><ul id="13f07e06-2ba1-801a-ab2f-e79055a22e10" class="bulleted-list"><li style="list-style-type:disc">Longest Increasing Subsequence.</li></ul><ul id="13f07e06-2ba1-80fe-a13a-f351415a3551" class="bulleted-list"><li style="list-style-type:disc">Maximum sum increasing subsequence.</li></ul><ul id="13f07e06-2ba1-80ef-9b15-f36ddea7398a" class="bulleted-list"><li style="list-style-type:disc">Partition array for maximum sum.</li></ul></li></ol><hr id="13f07e06-2ba1-802b-a882-d58a88770a30"/><h3 id="13f07e06-2ba1-80cc-aadc-ed93928cc991" class=""><strong>Miscellaneous Problems</strong></h3><ol type="1" id="13f07e06-2ba1-8068-b937-e0b032d11d4e" class="numbered-list" start="1"><li><strong>Matrix-like Problems</strong><ul id="13f07e06-2ba1-80d2-91ba-ffff0f5a6965" class="bulleted-list"><li style="list-style-type:disc">Convert a 1D array into a 2D matrix and vice versa.</li></ul><ul id="13f07e06-2ba1-8019-9124-c511340d773b" class="bulleted-list"><li style="list-style-type:disc">Spiral order traversal.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-8048-a2af-fddd754c6ffc" class="numbered-list" start="2"><li><strong>Hashing and Index Mapping</strong><ul id="13f07e06-2ba1-8069-a413-e8e24e899098" class="bulleted-list"><li style="list-style-type:disc">Find duplicates in constant space.</li></ul><ul id="13f07e06-2ba1-8028-978e-d3eb468697db" class="bulleted-list"><li style="list-style-type:disc">Index of the first repeating/non-repeating element.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-8035-b0f9-d22cb8e3aac4" class="numbered-list" start="3"><li><strong>Game Theory and Simulation</strong><ul id="13f07e06-2ba1-80c0-a0f2-ea73f5328f2b" class="bulleted-list"><li style="list-style-type:disc">Simulate operations on an array (e.g., Josephus problem).</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80a4-9178-f7138eb0d736" class="numbered-list" start="4"><li><strong>String Conversion</strong><ul id="13f07e06-2ba1-80d1-b4c0-c007bb38b0f5" class="bulleted-list"><li style="list-style-type:disc">Convert characters to/from ASCII values.</li></ul><ul id="13f07e06-2ba1-8033-bbff-c8d4eb65dda8" class="bulleted-list"><li style="list-style-type:disc">Sort an array of strings.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80de-958f-ca424f5e2ba3" class="numbered-list" start="5"><li><strong>Others</strong><ul id="13f07e06-2ba1-80c5-9d92-e22e5624f605" class="bulleted-list"><li style="list-style-type:disc">Find the kth smallest/largest element.</li></ul><ul id="13f07e06-2ba1-80d8-90aa-fdce426c1ab4" class="bulleted-list"><li style="list-style-type:disc">Maximum XOR of two elements in an array.</li></ul></li></ol><hr id="13f07e06-2ba1-80a6-bb66-c90209879923"/><h3 id="13f07e06-2ba1-80cf-ba68-f2fa5997e6d1" class=""><strong>Real-world Applications</strong></h3><ol type="1" id="13f07e06-2ba1-801e-99cf-f12b0de956ae" class="numbered-list" start="1"><li><strong>Scheduling</strong><ul id="13f07e06-2ba1-80b6-b000-ca194023a386" class="bulleted-list"><li style="list-style-type:disc">Merge overlapping intervals.</li></ul><ul id="13f07e06-2ba1-8029-bf6b-c2a2dcb8acf2" class="bulleted-list"><li style="list-style-type:disc">Find free time slots from busy schedules.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-80e0-837d-c981fb9dcfe9" class="numbered-list" start="2"><li><strong>Stock Market Problems</strong><ul id="13f07e06-2ba1-8049-8b14-e8d312fe3336" class="bulleted-list"><li style="list-style-type:disc">Maximum profit from buying and selling stocks.</li></ul><ul id="13f07e06-2ba1-8017-8aeb-e200b480b0e4" class="bulleted-list"><li style="list-style-type:disc">Maximum difference between two elements.</li></ul></li></ol><ol type="1" id="13f07e06-2ba1-804d-ad23-c704a3e0a128" class="numbered-list" start="3"><li><strong>Search and Rescue</strong><ul id="13f07e06-2ba1-8067-9ef8-e6faf7316a71" class="bulleted-list"><li style="list-style-type:disc">Find the shortest path in a grid (modified array traversal).</li></ul></li></ol><hr id="13f07e06-2ba1-8083-95f5-fb399c9183b6"/><p id="13f07e06-2ba1-8098-b8a4-ec17ad75ac2d" class="">Questions on arrays can also be combined with other data structures (e.g., using stacks for monotonic array processing) to create hybrid concepts.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

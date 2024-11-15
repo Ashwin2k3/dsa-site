@@ -1,0 +1,1376 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Code for all the Algorithms </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13f07e06-2ba1-80ba-9466-c151540eb62e" class="page sans"><header><h1 class="page-title">Code for all the Algorithms </h1><p class="page-description"></p></header><div class="page-body"><p id="13f07e06-2ba1-8023-b289-d0d17b672e4b" class="">Here are the C++ implementations for some of the most important Dynamic Programming (DP) algorithms. I&#x27;ll start with a few key ones and cover others in subsequent responses if needed.</p><h3 id="13f07e06-2ba1-80d3-82a1-eadfad9a6daf" class="">1. <strong>Fibonacci Sequence</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-808c-91de-f5beff117ede" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+// Fibonacci using Dynamic Programming (Tabulation)
+int fib(int n) {
+    vector&lt;int&gt; dp(n + 1, 0);
+    dp[0] = 0;
+    dp[1] = 1;
+
+    for (int i = 2; i &lt;= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+
+    return dp[n];
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter n: &quot;;
+    cin &gt;&gt; n;
+    cout &lt;&lt; &quot;Fibonacci(&quot; &lt;&lt; n &lt;&lt; &quot;) = &quot; &lt;&lt; fib(n) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8061-91f6-fe69ea3ca713"/><h3 id="13f07e06-2ba1-800c-9687-e96ad522b6ba" class="">2. <strong>0/1 Knapsack Problem</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8035-a6de-e3d6dbc469f0" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int knapsack(int W, vector&lt;int&gt;&amp; wt, vector&lt;int&gt;&amp; val, int n) {
+    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(W + 1, 0));
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int w = 1; w &lt;= W; w++) {
+            if (wt[i - 1] &lt;= w)
+                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - wt[i - 1]] + val[i - 1]);
+            else
+                dp[i][w] = dp[i - 1][w];
+        }
+    }
+
+    return dp[n][W];
+}
+
+int main() {
+    int n, W;
+    cout &lt;&lt; &quot;Enter number of items: &quot;;
+    cin &gt;&gt; n;
+    cout &lt;&lt; &quot;Enter knapsack capacity: &quot;;
+    cin &gt;&gt; W;
+
+    vector&lt;int&gt; wt(n), val(n);
+
+    cout &lt;&lt; &quot;Enter weights: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; wt[i];
+
+    cout &lt;&lt; &quot;Enter values: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; val[i];
+
+    cout &lt;&lt; &quot;Maximum value in Knapsack = &quot; &lt;&lt; knapsack(W, wt, val, n) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e0-ab3c-e22f992c4b4a"/><h3 id="13f07e06-2ba1-8019-a4da-e04e062f08c3" class="">3. <strong>Longest Increasing Subsequence (LIS)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8066-a113-c5eb223ea4ff" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int LIS(vector&lt;int&gt;&amp; arr) {
+    int n = arr.size();
+    vector&lt;int&gt; dp(n, 1); // Every element is an LIS of length 1
+
+    for (int i = 1; i &lt; n; i++) {
+        for (int j = 0; j &lt; i; j++) {
+            if (arr[i] &gt; arr[j]) {
+                dp[i] = max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+
+    return *max_element(dp.begin(), dp.end());
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter number of elements: &quot;;
+    cin &gt;&gt; n;
+
+    vector&lt;int&gt; arr(n);
+    cout &lt;&lt; &quot;Enter elements: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+
+    cout &lt;&lt; &quot;Length of Longest Increasing Subsequence: &quot; &lt;&lt; LIS(arr) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8023-b14a-c4f0a1f2af6e"/><h3 id="13f07e06-2ba1-8052-a0ad-e42e3994fc01" class="">4. <strong>Longest Common Subsequence (LCS)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80e2-85a5-fddd3c6017e8" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int LCS(string X, string Y) {
+    int m = X.size(), n = Y.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1, 0));
+
+    for (int i = 1; i &lt;= m; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            if (X[i - 1] == Y[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string X, Y;
+    cout &lt;&lt; &quot;Enter first string: &quot;;
+    cin &gt;&gt; X;
+    cout &lt;&lt; &quot;Enter second string: &quot;;
+    cin &gt;&gt; Y;
+
+    cout &lt;&lt; &quot;Length of Longest Common Subsequence: &quot; &lt;&lt; LCS(X, Y) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-805b-ba7f-d35ddded82f8"/><h3 id="13f07e06-2ba1-8081-a537-fab27046b663" class="">5. <strong>Edit Distance (Levenshtein Distance)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8052-aee5-dbcfde1c3f91" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int editDistance(string str1, string str2) {
+    int m = str1.length(), n = str2.length();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1, 0));
+
+    for (int i = 0; i &lt;= m; i++) dp[i][0] = i;
+    for (int j = 0; j &lt;= n; j++) dp[0][j] = j;
+
+    for (int i = 1; i &lt;= m; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            if (str1[i - 1] == str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = min({dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1});
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string str1, str2;
+    cout &lt;&lt; &quot;Enter first string: &quot;;
+    cin &gt;&gt; str1;
+    cout &lt;&lt; &quot;Enter second string: &quot;;
+    cin &gt;&gt; str2;
+
+    cout &lt;&lt; &quot;Edit Distance: &quot; &lt;&lt; editDistance(str1, str2) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8099-a1a7-cd5835c3ed3e"/><h3 id="13f07e06-2ba1-808f-bcda-ed7c1cf1b653" class="">6. <strong>Coin Change Problem (Min Coins)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-803a-be48-d82e2ff15310" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
+    vector&lt;int&gt; dp(amount + 1, amount + 1);
+    dp[0] = 0;
+
+    for (int i = 1; i &lt;= amount; i++) {
+        for (int coin : coins) {
+            if (i - coin &gt;= 0) {
+                dp[i] = min(dp[i], dp[i - coin] + 1);
+            }
+        }
+    }
+
+    return dp[amount] == amount + 1 ? -1 : dp[amount];
+}
+
+int main() {
+    int n, amount;
+    cout &lt;&lt; &quot;Enter number of coins: &quot;;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; coins(n);
+
+    cout &lt;&lt; &quot;Enter coins: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; coins[i];
+
+    cout &lt;&lt; &quot;Enter amount: &quot;;
+    cin &gt;&gt; amount;
+
+    cout &lt;&lt; &quot;Minimum coins needed: &quot; &lt;&lt; coinChange(coins, amount) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-804a-bb66-ebc0d6c20553"/><h3 id="13f07e06-2ba1-8062-89d2-c15c4441e43b" class="">7. <strong>Maximum Subarray Sum (Kadane’s Algorithm)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80f6-aebe-ddfc03ad5453" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int maxSubArraySum(vector&lt;int&gt;&amp; nums) {
+    int max_sum = nums[0], current_sum = nums[0];
+
+    for (int i = 1; i &lt; nums.size(); i++) {
+        current_sum = max(nums[i], current_sum + nums[i]);
+        max_sum = max(max_sum, current_sum);
+    }
+
+    return max_sum;
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter number of elements: &quot;;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; nums(n);
+
+    cout &lt;&lt; &quot;Enter elements: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; nums[i];
+
+    cout &lt;&lt; &quot;Maximum Subarray Sum: &quot; &lt;&lt; maxSubArraySum(nums) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8077-9e3a-eafa67ebe220"/><p id="13f07e06-2ba1-8055-9296-c5305f627f3b" class="">
+</p><p id="13f07e06-2ba1-80ea-86ff-e5e9d9da61ae" class="">Here are more C++ implementations for common <strong>Dynamic Programming (DP)</strong> algorithms:</p><hr id="13f07e06-2ba1-800c-b68d-d2b2f38260aa"/><h3 id="13f07e06-2ba1-80b4-9578-d139613dbde0" class="">8. <strong>Matrix Chain Multiplication</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8012-84c6-cd4757d4411c" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+int matrixChainMultiplication(vector&lt;int&gt;&amp; arr) {
+    int n = arr.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n, vector&lt;int&gt;(n, 0));
+
+    for (int len = 2; len &lt; n; len++) {
+        for (int i = 1; i &lt; n - len; i++) {
+            int j = i + len - 1;
+            dp[i][j] = INT_MAX;
+            for (int k = i; k &lt; j; k++) {
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+1][j] + arr[i-1] * arr[k] * arr[j]);
+            }
+        }
+    }
+
+    return dp[1][n-1];
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter number of matrices: &quot;;
+    cin &gt;&gt; n;
+
+    vector&lt;int&gt; arr(n);
+    cout &lt;&lt; &quot;Enter dimensions of matrices: &quot;;
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; arr[i];
+    }
+
+    cout &lt;&lt; &quot;Minimum number of multiplications: &quot; &lt;&lt; matrixChainMultiplication(arr) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e8-a18a-d4d98efc42d9"/><h3 id="13f07e06-2ba1-80ac-b1ef-e691bc56c4af" class="">9. <strong>Rod Cutting Problem</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-807b-b54f-e33a8b9f0d3c" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int rodCutting(vector&lt;int&gt;&amp; prices, int length) {
+    vector&lt;int&gt; dp(length + 1, 0);
+
+    for (int i = 1; i &lt;= length; i++) {
+        for (int j = 0; j &lt; i; j++) {
+            dp[i] = max(dp[i], prices[j] + dp[i - j - 1]);
+        }
+    }
+
+    return dp[length];
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter the length of the rod: &quot;;
+    cin &gt;&gt; n;
+
+    vector&lt;int&gt; prices(n);
+    cout &lt;&lt; &quot;Enter the prices for each length (1 to &quot; &lt;&lt; n &lt;&lt; &quot;): &quot;;
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; prices[i];
+    }
+
+    cout &lt;&lt; &quot;Maximum profit: &quot; &lt;&lt; rodCutting(prices, n) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-802b-812b-feb22ec29e4d"/><h3 id="13f07e06-2ba1-80de-a6e3-e5ab40b144f8" class="">10. <strong>Egg Dropping Problem</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-808e-9132-f778b5e0c641" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int eggDrop(int eggs, int floors) {
+    vector&lt;vector&lt;int&gt;&gt; dp(eggs + 1, vector&lt;int&gt;(floors + 1, 0));
+
+    for (int i = 1; i &lt;= eggs; i++) {
+        for (int j = 1; j &lt;= floors; j++) {
+            if (j == 1)
+                dp[i][j] = 1;
+            else if (i == 1)
+                dp[i][j] = j;
+            else {
+                dp[i][j] = INT_MAX;
+                for (int k = 1; k &lt;= j; k++) {
+                    dp[i][j] = min(dp[i][j], 1 + max(dp[i - 1][k - 1], dp[i][j - k]));
+                }
+            }
+        }
+    }
+
+    return dp[eggs][floors];
+}
+
+int main() {
+    int eggs, floors;
+    cout &lt;&lt; &quot;Enter number of eggs: &quot;;
+    cin &gt;&gt; eggs;
+    cout &lt;&lt; &quot;Enter number of floors: &quot;;
+    cin &gt;&gt; floors;
+
+    cout &lt;&lt; &quot;Minimum trials required: &quot; &lt;&lt; eggDrop(eggs, floors) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8019-9bc4-eb5ea52d3197"/><h3 id="13f07e06-2ba1-8051-983c-f994fc9edf44" class="">11. <strong>Palindromic Subsequence (Longest Palindromic Subsequence)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8053-ab32-e413eac18bfc" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int longestPalindromicSubsequence(string s) {
+    int n = s.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n, vector&lt;int&gt;(n, 0));
+
+    for (int i = 0; i &lt; n; i++) {
+        dp[i][i] = 1;
+    }
+
+    for (int len = 2; len &lt;= n; len++) {
+        for (int i = 0; i &lt; n - len + 1; i++) {
+            int j = i + len - 1;
+            if (s[i] == s[j])
+                dp[i][j] = dp[i + 1][j - 1] + 2;
+            else
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1]);
+        }
+    }
+
+    return dp[0][n - 1];
+}
+
+int main() {
+    string s;
+    cout &lt;&lt; &quot;Enter string: &quot;;
+    cin &gt;&gt; s;
+
+    cout &lt;&lt; &quot;Longest Palindromic Subsequence: &quot; &lt;&lt; longestPalindromicSubsequence(s) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80a2-a623-eaade2da1d58"/><h3 id="13f07e06-2ba1-8006-9f2c-f8ce442e6df3" class="">12. <strong>Subset Sum Problem</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80f8-bd5a-e97deef2fb15" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+bool isSubsetSum(vector&lt;int&gt;&amp; arr, int sum) {
+    int n = arr.size();
+    vector&lt;vector&lt;bool&gt;&gt; dp(n + 1, vector&lt;bool&gt;(sum + 1, false));
+
+    for (int i = 0; i &lt;= n; i++) {
+        dp[i][0] = true;
+    }
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= sum; j++) {
+            if (arr[i - 1] &lt;= j)
+                dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]];
+            else
+                dp[i][j] = dp[i - 1][j];
+        }
+    }
+
+    return dp[n][sum];
+}
+
+int main() {
+    int n, sum;
+    cout &lt;&lt; &quot;Enter number of elements: &quot;;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; arr(n);
+    cout &lt;&lt; &quot;Enter the elements: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+    cout &lt;&lt; &quot;Enter sum: &quot;;
+    cin &gt;&gt; sum;
+
+    cout &lt;&lt; (isSubsetSum(arr, sum) ? &quot;Yes&quot; : &quot;No&quot;) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-801d-8a4d-c1c2668b059b"/><h3 id="13f07e06-2ba1-80b5-be0a-d26ac2c00481" class="">13. <strong>Coin Change (Unlimited Supply)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-807a-b9ea-db2dff53d906" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
+    vector&lt;int&gt; dp(amount + 1, amount + 1);
+    dp[0] = 0;
+
+    for (int i = 1; i &lt;= amount; i++) {
+        for (int coin : coins) {
+            if (i - coin &gt;= 0) {
+                dp[i] = min(dp[i], dp[i - coin] + 1);
+            }
+        }
+    }
+
+    return dp[amount] == amount + 1 ? -1 : dp[amount];
+}
+
+int main() {
+    int n, amount;
+    cout &lt;&lt; &quot;Enter number of coins: &quot;;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; coins(n);
+
+    cout &lt;&lt; &quot;Enter coins: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; coins[i];
+
+    cout &lt;&lt; &quot;Enter amount: &quot;;
+    cin &gt;&gt; amount;
+
+    cout &lt;&lt; &quot;Minimum coins needed: &quot; &lt;&lt; coinChange(coins, amount) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80cb-9eb5-d2edfb59f91e"/><h3 id="13f07e06-2ba1-8068-896c-f4d7027593a5" class="">14. <strong>Balanced Parentheses (Catalan Numbers)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-805a-af59-ee70b8f2ac30" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+long long catalan(int n) {
+    vector&lt;long long&gt; dp(n + 1, 0);
+    dp[0] = dp[1] = 1;
+
+    for (int i = 2; i &lt;= n; i++) {
+        for (int j = 0; j &lt; i; j++) {
+            dp[i] += dp[j] * dp[i - 1 - j];
+        }
+    }
+
+    return dp[n];
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter number of pairs: &quot;;
+    cin &gt;&gt; n;
+
+    cout &lt;&lt; &quot;Number of balanced parentheses combinations: &quot; &lt;&lt; catalan(n) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80c2-8e2e-ca95883197b6"/><p id="13f07e06-2ba1-8082-b4e6-ffffc0eb0151" class="">These are some more <strong>Dynamic Programming (DP)</strong> algorithms implemented in C++. Let me know if you want more or explanations for any specific algorithm!</p><p id="13f07e06-2ba1-804f-b42d-fe7d449fbb5f" class="">Here are some more <strong>Dynamic Programming (DP)</strong> algorithms, along with their C++ implementations:</p><hr id="13f07e06-2ba1-80ff-b680-fc76d2522b6e"/><h3 id="13f07e06-2ba1-8047-aad0-d6142164989e" class="">15. <strong>Longest Common Subsequence (LCS)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8090-93d9-cb0eef77acb3" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int longestCommonSubsequence(string x, string y) {
+    int m = x.size(), n = y.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1, 0));
+
+    for (int i = 1; i &lt;= m; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            if (x[i - 1] == y[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string x, y;
+    cout &lt;&lt; &quot;Enter first string: &quot;;
+    cin &gt;&gt; x;
+    cout &lt;&lt; &quot;Enter second string: &quot;;
+    cin &gt;&gt; y;
+
+    cout &lt;&lt; &quot;Longest Common Subsequence: &quot; &lt;&lt; longestCommonSubsequence(x, y) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80ae-8c63-f70ebb66cff0"/><h3 id="13f07e06-2ba1-804b-b13c-c34e883d983b" class="">16. <strong>Longest Increasing Subsequence (LIS)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80c3-b5e3-ee3d0133180c" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int longestIncreasingSubsequence(vector&lt;int&gt;&amp; arr) {
+    int n = arr.size();
+    vector&lt;int&gt; dp(n, 1);
+
+    for (int i = 1; i &lt; n; i++) {
+        for (int j = 0; j &lt; i; j++) {
+            if (arr[i] &gt; arr[j]) {
+                dp[i] = max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+
+    return *max_element(dp.begin(), dp.end());
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter number of elements: &quot;;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; arr(n);
+
+    cout &lt;&lt; &quot;Enter elements: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+
+    cout &lt;&lt; &quot;Longest Increasing Subsequence length: &quot; &lt;&lt; longestIncreasingSubsequence(arr) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8006-8e97-ea29261dd257"/><h3 id="13f07e06-2ba1-8012-86a1-c36fd9ee1506" class="">17. <strong>Word Break Problem</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8012-a611-d19d9a49e139" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_set&gt;
+using namespace std;
+
+bool wordBreak(string s, unordered_set&lt;string&gt;&amp; wordDict) {
+    int n = s.size();
+    vector&lt;bool&gt; dp(n + 1, false);
+    dp[0] = true;
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = i - 1; j &gt;= 0; j--) {
+            if (dp[j] &amp;&amp; wordDict.find(s.substr(j, i - j)) != wordDict.end()) {
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+
+    return dp[n];
+}
+
+int main() {
+    string s;
+    cout &lt;&lt; &quot;Enter string: &quot;;
+    cin &gt;&gt; s;
+
+    int n;
+    cout &lt;&lt; &quot;Enter number of words in dictionary: &quot;;
+    cin &gt;&gt; n;
+
+    unordered_set&lt;string&gt; wordDict;
+    cout &lt;&lt; &quot;Enter words: &quot;;
+    for (int i = 0; i &lt; n; i++) {
+        string word;
+        cin &gt;&gt; word;
+        wordDict.insert(word);
+    }
+
+    cout &lt;&lt; (wordBreak(s, wordDict) ? &quot;Yes&quot; : &quot;No&quot;) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80c1-81e2-ec79b92dcdce"/><h3 id="13f07e06-2ba1-800d-8825-e8e8fdc8c2c7" class="">18. <strong>0/1 Knapsack Problem</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-80a9-866d-ce08b6ef5e88" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int knapsack(int W, vector&lt;int&gt;&amp; wt, vector&lt;int&gt;&amp; val, int n) {
+    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(W + 1, 0));
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int w = 1; w &lt;= W; w++) {
+            if (wt[i - 1] &lt;= w) {
+                dp[i][w] = max(dp[i - 1][w], val[i - 1] + dp[i - 1][w - wt[i - 1]]);
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    return dp[n][W];
+}
+
+int main() {
+    int n, W;
+    cout &lt;&lt; &quot;Enter number of items: &quot;;
+    cin &gt;&gt; n;
+    cout &lt;&lt; &quot;Enter maximum weight: &quot;;
+    cin &gt;&gt; W;
+
+    vector&lt;int&gt; wt(n), val(n);
+    cout &lt;&lt; &quot;Enter weights and values of items: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; wt[i] &gt;&gt; val[i];
+
+    cout &lt;&lt; &quot;Maximum value that can be obtained: &quot; &lt;&lt; knapsack(W, wt, val, n) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-8007-b4e8-ebc753d5d106"/><h3 id="13f07e06-2ba1-80ec-b400-d120e2c74d65" class="">19. <strong>Count of Subsets with Given Sum</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8092-be4f-ffd00fbc060b" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int countSubsetsWithGivenSum(vector&lt;int&gt;&amp; arr, int sum) {
+    int n = arr.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(sum + 1, 0));
+
+    for (int i = 0; i &lt;= n; i++) {
+        dp[i][0] = 1;  // Subset sum 0 can be formed by not including any elements.
+    }
+
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= sum; j++) {
+            if (arr[i - 1] &lt;= j) {
+                dp[i][j] = dp[i - 1][j] + dp[i - 1][j - arr[i - 1]];
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+
+    return dp[n][sum];
+}
+
+int main() {
+    int n, sum;
+    cout &lt;&lt; &quot;Enter number of elements: &quot;;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; arr(n);
+
+    cout &lt;&lt; &quot;Enter elements: &quot;;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+
+    cout &lt;&lt; &quot;Enter the sum: &quot;;
+    cin &gt;&gt; sum;
+
+    cout &lt;&lt; &quot;Count of subsets with given sum: &quot; &lt;&lt; countSubsetsWithGivenSum(arr, sum) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80e7-99e9-d6412c7d4038"/><h3 id="13f07e06-2ba1-80a7-ba8b-f42f4ee7fa60" class="">20. <strong>Fibonacci Sequence (Memoization)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8018-ab5a-f3fc575dfc6d" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int fibonacci(int n, vector&lt;int&gt;&amp; dp) {
+    if (n &lt;= 1) return n;
+    if (dp[n] != -1) return dp[n];
+    return dp[n] = fibonacci(n - 1, dp) + fibonacci(n - 2, dp);
+}
+
+int main() {
+    int n;
+    cout &lt;&lt; &quot;Enter number: &quot;;
+    cin &gt;&gt; n;
+
+    vector&lt;int&gt; dp(n + 1, -1);
+    cout &lt;&lt; &quot;Fibonacci number is: &quot; &lt;&lt; fibonacci(n, dp) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80bd-a571-d2ab43e2357e"/><h3 id="13f07e06-2ba1-807e-ac5c-df599337948b" class="">21. <strong>Edit Distance (Levenshtein Distance)</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13f07e06-2ba1-8042-bbce-e03877a5d98d" class="code"><code class="language-C++" style="white-space:pre-wrap;word-break:break-all">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int editDistance(string str1, string str2) {
+    int m = str1.size(), n = str2.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(m + 1, vector&lt;int&gt;(n + 1, 0));
+
+    for (int i = 0; i &lt;= m; i++) dp[i][0] = i;
+    for (int j = 0; j &lt;= n; j++) dp[0][j] = j;
+
+    for (int i = 1; i &lt;= m; i++) {
+        for (int j = 1; j &lt;= n; j++) {
+            if (str1[i - 1] == str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = 1 + min({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]});
+            }
+        }
+    }
+
+    return dp[m][n];
+}
+
+int main() {
+    string str1, str2;
+    cout &lt;&lt; &quot;Enter first string: &quot;;
+    cin &gt;&gt; str1;
+    cout &lt;&lt; &quot;Enter second string: &quot;;
+    cin &gt;&gt; str2;
+
+    cout &lt;&lt; &quot;Edit Distance: &quot; &lt;&lt; editDistance(str1, str2) &lt;&lt; endl;
+    return 0;
+}
+</code></pre><hr id="13f07e06-2ba1-80d5-b002-c4ed23e96acb"/><p id="13f07e06-2ba1-804f-adde-e9bab99a059e" class="">These are additional <strong>Dynamic Programming (DP)</strong> algorithms commonly asked in competitive programming and interviews. Let me know if you need further clarification or more examples!</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
